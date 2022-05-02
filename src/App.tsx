@@ -72,7 +72,10 @@ export const HandleAddToVisited: Fun<Country, Action<AppState>> =
     country.howManyVisits = 1;
     let newVisitedCountry = [country];
     let newState: AppState = { ...state };
-    if (state.VisitedCountries.indexOf(country) === -1) {
+    let foundCountry = state.VisitedCountries.find(
+      (c) => c.name === country.name
+    );
+    if (foundCountry === undefined) {
       newState = {
         ...state,
         VisitedCountries: state.VisitedCountries.concat(newVisitedCountry),
@@ -82,12 +85,10 @@ export const HandleAddToVisited: Fun<Country, Action<AppState>> =
       };
     } else {
       let updatedCountries: Country[] = state.VisitedCountries;
-      let index = state.VisitedCountries.indexOf(country);
-      let existingCountry = state.VisitedCountries[index];
-      let updatedVisits = existingCountry.howManyVisits + 1;
+      let index = state.VisitedCountries.indexOf(foundCountry);
       let updatedCountry: Country = {
-        ...existingCountry,
-        howManyVisits: updatedVisits,
+        ...foundCountry,
+        howManyVisits: foundCountry.howManyVisits + 1,
       };
       updatedCountries.splice(index, 1, updatedCountry);
       newState = {
