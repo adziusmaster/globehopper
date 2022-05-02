@@ -5,6 +5,7 @@ import {
 } from "../Button/ButtonWidget";
 import SvgWidget from "../SvgWidget/SvgWidget";
 import { CountriesProps, CountryOverviewProps } from "./CountryOverviewState";
+import * as Icons from "react-bootstrap-icons";
 
 const AllCountries = (props: CountriesProps): JSX.Element => (
   <>
@@ -69,12 +70,11 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                     className: "teaser__action teaser__info",
                     href: "#",
                     text: `More information about ${country.name.official}`,
-                    Svg: SvgWidget({
-                      className: "teaser__icon",
-                      width: "24px",
-                      height: "24px",
-                      href: "#icon--info",
-                    }),
+                    Svg: (
+                      <>
+                        <Icons.Info size={24} color="" />
+                      </>
+                    ),
                   })}
                   {country.howManyVisits === 0 ? (
                     <>
@@ -83,58 +83,90 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                         onClick: () => props.addToVisited(country),
                         classNameButton: "teaser__action teaser__add",
                         aria: `Add ${country.name.official} to your visited countries list`,
-                        Svg: SvgWidget({
-                          className: "teaser__icon",
-                          width: "24px",
-                          height: "24px",
-                          href: "#icon--check",
-                        }),
+                        Svg: (
+                          <>
+                            <Icons.CheckCircle size={24} color="" />
+                          </>
+                        ),
                       })}
                     </>
                   ) : (
                     <>
                       {ButtonSpecialNoDivWidget({
-                        key: "addToVisited",
-                        onClick: () => props.addToVisited(country),
-                        disabled: true,
+                        key: "removeFromVisited",
+                        onClick: () => props.removeFromVisited(country),
                         classNameButton: "teaser__action teaser__add",
-                        aria: `Add ${country.name.official} to your visited countries list`,
-                        Svg: SvgWidget({
-                          className: "teaser__icon",
-                          width: "24px",
-                          height: "24px",
-                          href: "#icon--check",
-                        }),
+                        aria: `Remove ${country.name.official} from your visited countries list`,
+                        Svg: (
+                          <>
+                            <Icons.CheckCircleFill size={24} color="" />
+                          </>
+                        ),
                       })}
                     </>
                   )}
                 </div>
 
                 <div className="teaser__extras">
-                  {ButtonSpecialNoDivWidget({
-                    key: "addToWishList",
-                    onClick: () => console.log("add to wish list"),
-                    classNameButton: "teaser__action teaser__plus",
-                    aria: `Add ${country.name.official} to the wish list`,
-                    Svg: SvgWidget({
-                      className: "teaser__icon",
-                      width: "24px",
-                      height: "24px",
-                      href: "#icon--plus",
-                    }),
-                  })}
-                  {ButtonSpecialNoDivWidget({
-                    key: "addToFavourited",
-                    onClick: () => console.log("add to favourited"),
-                    classNameButton: "teaser__action teaser__star",
-                    aria: `Add ${country.name.official} to favourited`,
-                    Svg: SvgWidget({
-                      className: "teaser__icon",
-                      width: "24px",
-                      height: "24px",
-                      href: "#icon--heart",
-                    }),
-                  })}
+                  {country.wishList ? (
+                    <>
+                      {ButtonSpecialNoDivWidget({
+                        key: "removeFromWishList",
+                        onClick: () => props.removeFromWishList(country),
+                        classNameButton: "teaser__action teaser__plus",
+                        aria: `Remove ${country.name.official} from the wish list`,
+                        Svg: (
+                          <>
+                            <Icons.StarFill size={24} color="" />
+                          </>
+                        ),
+                      })}
+                    </>
+                  ) : (
+                    <>
+                      {ButtonSpecialNoDivWidget({
+                        key: "addToWishList",
+                        onClick: () => props.addToWishList(country),
+                        classNameButton: "teaser__action teaser__plus",
+                        aria: `Add ${country.name.official} to the wish list`,
+                        Svg: (
+                          <>
+                            <Icons.Star size={24} color="" />
+                          </>
+                        ),
+                      })}
+                    </>
+                  )}
+
+                  {country.favourites ? (
+                    <>
+                      {ButtonSpecialNoDivWidget({
+                        key: "removeFromFavourited",
+                        onClick: () => props.removeFromFavourites(country),
+                        classNameButton: "teaser__action teaser__star",
+                        aria: `Remove ${country.name.official} from favourited`,
+                        Svg: (
+                          <>
+                            <Icons.HeartFill size={24} color="" />
+                          </>
+                        ),
+                      })}
+                    </>
+                  ) : (
+                    <>
+                      {ButtonSpecialNoDivWidget({
+                        key: "addToFavourited",
+                        onClick: () => props.addToFavourites(country),
+                        classNameButton: "teaser__action teaser__star",
+                        aria: `Add ${country.name.official} to favourited`,
+                        Svg: (
+                          <>
+                            <Icons.Heart size={24} color="" />
+                          </>
+                        ),
+                      })}
+                    </>
+                  )}
                 </div>
               </footer>
             </div>

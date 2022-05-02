@@ -11,11 +11,19 @@ export type CountryOverviewProps = {
   VisitedCountries: Country[];
   kindOfResult: string;
   addToVisited: (country: Country) => void;
-  addOneVisit: (country: Country) => void;
+  removeFromVisited: (country: Country) => void;
+  addToFavourites: (country: Country) => void;
+  removeFromFavourites: (country: Country) => void;
+  addToWishList: (country: Country) => void;
+  removeFromWishList: (country: Country) => void;
 };
 
 export type CountriesProps = {
   countries: Country[];
   addToVisited: (country: Country) => void;
-  addOneVisit: (country: Country) => void;
+  removeFromVisited: (country: Country) => void;
+  addToFavourites: (country: Country) => void;
+  removeFromFavourites: (country: Country) => void;
+  addToWishList: (country: Country) => void;
+  removeFromWishList: (country: Country) => void;
 };

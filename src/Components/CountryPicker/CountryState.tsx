@@ -1,3 +1,4 @@
+import { BooleanLiteral } from "typescript";
 import { AsyncState, HttpResult } from "widgets-for-react";
 import { AppState, Routes } from "../../App";
 
@@ -12,6 +13,8 @@ export type Country = {
     svg: string;
   };
   howManyVisits: number;
+  favourites: boolean;
+  wishList: boolean;
 };
 
 export type CountryState = {
@@ -31,13 +34,6 @@ export const allContinents: Continent[] = [
 ];
 
 export type CountrySelectorProps = {
-  // onChangeCountry: (country: Country) => void;
-  // onChangeContinent: (continent: Continent) => void;
-  // onMakeCountryVisited: (country: Country) => void;
-  // onMakeCountryLiked: (country: Country) => void;
-  // onPlusLike: (country: Country) => void;
-  // onMinusLike: (country: Country) => void;
-  // onSortOn: (e: React.ChangeEvent<HTMLInputElement>) => void;
   currentRoute: Routes;
   allCountries: Country[];
   NotVisitedCountries: Country[];
@@ -45,11 +41,10 @@ export type CountrySelectorProps = {
   FavoritesCountries: Country[];
   VisitedCountries: Country[];
   CountriesLoaded: (allCountries: Country[]) => void;
+  addToVisited: (country: Country) => void;
+  removeFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;
-  addOneVisit: (country: Country) => void;
-  // onClearFilter: () => void;
-  // onClearSearch: () => void;
-  // selectedContinent: Continent;
-  // searchedName: string;
-  // allCountries: Country[];
+  removeFromFavourites: (country: Country) => void;
+  addToWishList: (country: Country) => void;
+  removeFromWishList: (country: Country) => void;
 };

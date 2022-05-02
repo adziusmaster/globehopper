@@ -99,9 +99,129 @@ export const HandleAddToVisited: Fun<Country, Action<AppState>> =
 
     return newState;
   };
-export const HandleAddOneVisit: Fun<Country, Action<AppState>> =
+export const HandleAddToFavourites: Fun<Country, Action<AppState>> =
+  (country: Country) => (state: AppState) => {
+    let updatedCountry: Country = {
+      ...country,
+      favourites: true,
+    };
+    let newFavouritedCountry = [updatedCountry];
+    let newState: AppState = { ...state };
+
+    let indexInAllCountries = state.allCountries.indexOf(country);
+
+    let updatedAllCountries = state.allCountries;
+
+    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
+
+    newState = {
+      ...state,
+      allCountries: updatedAllCountries,
+      FavoritesCountries: state.FavoritesCountries.concat(newFavouritedCountry),
+    };
+
+    return newState;
+  };
+export const HandleAddToWishList: Fun<Country, Action<AppState>> =
+  (country: Country) => (state: AppState) => {
+    let updatedCountry: Country = {
+      ...country,
+      wishList: true,
+    };
+    let newWishListCountry = [updatedCountry];
+    let newState: AppState = { ...state };
+
+    let indexInAllCountries = state.allCountries.indexOf(country);
+
+    let updatedAllCountries = state.allCountries;
+
+    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
+
+    newState = {
+      ...state,
+      allCountries: updatedAllCountries,
+      WishlistCountries: state.WishlistCountries.concat(newWishListCountry),
+    };
+
+    return newState;
+  };
+export const HandleRemoveFromFavourites: Fun<Country, Action<AppState>> =
+  (country: Country) => (state: AppState) => {
+    let updatedCountry: Country = {
+      ...country,
+      favourites: false,
+    };
+    let newState: AppState = { ...state };
+
+    let indexInAllCountries = state.allCountries.indexOf(country);
+
+    let indexInFavouritesCountries = state.FavoritesCountries.indexOf(country);
+
+    let updatedAllCountries = state.allCountries;
+    let updatedFavouritesCountries = state.FavoritesCountries;
+
+    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
+    updatedFavouritesCountries.splice(indexInFavouritesCountries, 1);
+
+    newState = {
+      ...state,
+      allCountries: updatedAllCountries,
+      FavoritesCountries: updatedFavouritesCountries,
+    };
+
+    return newState;
+  };
+export const HandleRemoveFromWishList: Fun<Country, Action<AppState>> =
+  (country: Country) => (state: AppState) => {
+    let updatedCountry: Country = {
+      ...country,
+      wishList: false,
+    };
+    let newState: AppState = { ...state };
+
+    let indexInAllCountries = state.allCountries.indexOf(country);
+
+    let indexInWishListCountries = state.WishlistCountries.indexOf(country);
+
+    let updatedAllCountries = state.allCountries;
+    let updatedWishListCountries = state.WishlistCountries;
+
+    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
+    updatedWishListCountries.splice(indexInWishListCountries, 1);
+
+    newState = {
+      ...state,
+      allCountries: updatedAllCountries,
+      WishlistCountries: updatedWishListCountries,
+    };
+
+    return newState;
+  };
+export const HandleRemoveFromVisited: Fun<Country, Action<AppState>> =
   (country: Country) => (state: AppState) => {
     let newState: AppState = { ...state };
+
+    let updatedVisitedCountries = state.VisitedCountries.filter(
+      (c) => c.name !== country.name
+    );
+    let indexInAllCountries = state.allCountries.findIndex(
+      (c) => c.name === country.name
+    );
+
+    let updatedCountry: Country = {
+      ...country,
+      howManyVisits: 0,
+    };
+
+    let updatedAllCountries = state.allCountries;
+
+    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
+
+    newState = {
+      ...state,
+      allCountries: updatedAllCountries,
+      VisitedCountries: updatedVisitedCountries,
+    };
 
     return newState;
   };
@@ -145,9 +265,17 @@ const App = (): JSX.Element =>
               WishlistCountries: s0.WishlistCountries,
               FavoritesCountries: s0.FavoritesCountries,
               VisitedCountries: s0.VisitedCountries,
+              addToVisited: (e) => setState((s0) => HandleAddToVisited(e)(s0)),
+              removeFromVisited: (e) =>
+                setState((s0) => HandleRemoveFromVisited(e)(s0)),
               addToFavourites: (e) =>
-                setState((s0) => HandleAddToVisited(e)(s0)),
-              addOneVisit: (e) => setState((s0) => HandleAddOneVisit(e)(s0)),
+                setState((s0) => HandleAddToFavourites(e)(s0)),
+              removeFromFavourites: (e) =>
+                setState((s0) => HandleRemoveFromFavourites(e)(s0)),
+              addToWishList: (e) =>
+                setState((s0) => HandleAddToWishList(e)(s0)),
+              removeFromWishList: (e) =>
+                setState((s0) => HandleRemoveFromWishList(e)(s0)),
             })}
           </>
         )}
