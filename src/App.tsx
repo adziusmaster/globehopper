@@ -69,14 +69,33 @@ export const HandleLoadedCountries: Fun<Country[], Action<AppState>> =
 
 export const HandleAddToVisited: Fun<Country, Action<AppState>> =
   (country: Country) => (state: AppState) => {
+    country.howManyVisits = 1;
     let newVisitedCountry = [country];
-    let newState: AppState = {
-      ...state,
-      VisitedCountries: state.VisitedCountries.concat(newVisitedCountry),
-      NotVisitedCountries: state.NotVisitedCountries.filter(
-        (c) => c !== newVisitedCountry[0]
-      ),
-    };
+    let newState: AppState = { ...state };
+    if (state.VisitedCountries.indexOf(country) === -1) {
+      newState = {
+        ...state,
+        VisitedCountries: state.VisitedCountries.concat(newVisitedCountry),
+        NotVisitedCountries: state.NotVisitedCountries.filter(
+          (c) => c !== newVisitedCountry[0]
+        ),
+      };
+    } else {
+      let updatedCountries: Country[] = state.VisitedCountries;
+      let index = state.VisitedCountries.indexOf(country);
+      let existingCountry = state.VisitedCountries[index];
+      let updatedVisits = existingCountry.howManyVisits + 1;
+      let updatedCountry: Country = {
+        ...existingCountry,
+        howManyVisits: updatedVisits,
+      };
+      updatedCountries.splice(index, 1, updatedCountry);
+      newState = {
+        ...state,
+        VisitedCountries: updatedCountries,
+      };
+    }
+
     return newState;
   };
 
