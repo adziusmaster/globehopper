@@ -72,7 +72,8 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
               FavoritesCountries: props.FavoritesCountries,
               VisitedCountries: props.VisitedCountries,
               kindOfResult: s0.country.kind,
-              addToFavourites: props.addToFavourites,
+              addToVisited: props.addToFavourites,
+              addOneVisit: props.addOneVisit,
             })}
           </>
         );

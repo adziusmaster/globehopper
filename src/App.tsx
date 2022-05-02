@@ -99,6 +99,12 @@ export const HandleAddToVisited: Fun<Country, Action<AppState>> =
 
     return newState;
   };
+export const HandleAddOneVisit: Fun<Country, Action<AppState>> =
+  (country: Country) => (state: AppState) => {
+    let newState: AppState = { ...state };
+
+    return newState;
+  };
 
 export const Router: Fun<Routes, Action<AppState>> =
   (route: Routes) => (state: AppState) => {
@@ -128,7 +134,7 @@ const App = (): JSX.Element =>
               onWishList: () => setState((s0) => Router("wishList")(s0)),
               onFavorites: () => setState((s0) => Router("favotites")(s0)),
               onAll: () => setState((s0) => Router("all")(s0)),
-              currentRoute: s0.currentRoute
+              currentRoute: s0.currentRoute,
             })}
             {CountryWidget({
               CountriesLoaded: (e) =>
@@ -141,6 +147,7 @@ const App = (): JSX.Element =>
               VisitedCountries: s0.VisitedCountries,
               addToFavourites: (e) =>
                 setState((s0) => HandleAddToVisited(e)(s0)),
+              addOneVisit: (e) => setState((s0) => HandleAddOneVisit(e)(s0)),
             })}
           </>
         )}

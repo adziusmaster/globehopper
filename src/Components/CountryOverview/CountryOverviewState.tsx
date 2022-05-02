@@ -10,10 +10,12 @@ export type CountryOverviewProps = {
   FavoritesCountries: Country[];
   VisitedCountries: Country[];
   kindOfResult: string;
-  addToFavourites: (country: Country) => void;
+  addToVisited: (country: Country) => void;
+  addOneVisit: (country: Country) => void;
 };
 
 export type CountriesProps = {
   countries: Country[];
   addToVisited: (country: Country) => void;
+  addOneVisit: (country: Country) => void;
 };

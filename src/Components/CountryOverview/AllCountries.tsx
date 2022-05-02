@@ -11,7 +11,7 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
     {props.countries.map((country) => (
       <>
         <li className="overview__item">
-          <article className="teaser teaser--country">
+          <article className="teaser teaser--country checked">
             <div className="teaser__inner">
               <div className="teaser__content">
                 <header className="teaser__header">
@@ -35,13 +35,31 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                     </div>
                   </div>
                 </header>
-
-                <div className="teaser__status">
-                  <span className="sr-text">
-                    {country.name.official} is not in your visited countries
-                    list
-                  </span>
-                </div>
+                {country.howManyVisits === 0 ? (
+                  <>
+                    <div className="teaser__status">
+                      <span className="sr-text">
+                        {country.name.official} is not in your visited countries
+                        list
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="teaser__status">
+                      <span className="sr-text">
+                        {country.name.official} is in your visited countries
+                        list
+                      </span>
+                      {SvgWidget({
+                        className: "teaser__check checked",
+                        width: "48px",
+                        height: "48px",
+                        href: "#icon--check",
+                      })}
+                    </div>
+                  </>
+                )}
               </div>
 
               <footer className="teaser__footer">
@@ -58,18 +76,38 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                       href: "#icon--info",
                     }),
                   })}
-                  {ButtonSpecialNoDivWidget({
-                    key: "addToVisited",
-                    onClick: () => props.addToVisited(country),
-                    classNameButton: "teaser__action teaser__add",
-                    aria: `Add ${country.name.official} to your visited countries list`,
-                    Svg: SvgWidget({
-                      className: "teaser__icon",
-                      width: "24px",
-                      height: "24px",
-                      href: "#icon--check",
-                    }),
-                  })}
+                  {country.howManyVisits === 0 ? (
+                    <>
+                      {ButtonSpecialNoDivWidget({
+                        key: "addToVisited",
+                        onClick: () => props.addToVisited(country),
+                        classNameButton: "teaser__action teaser__add",
+                        aria: `Add ${country.name.official} to your visited countries list`,
+                        Svg: SvgWidget({
+                          className: "teaser__icon",
+                          width: "24px",
+                          height: "24px",
+                          href: "#icon--check",
+                        }),
+                      })}
+                    </>
+                  ) : (
+                    <>
+                      {ButtonSpecialNoDivWidget({
+                        key: "addToVisited",
+                        onClick: () => props.addToVisited(country),
+                        disabled: true,
+                        classNameButton: "teaser__action teaser__add",
+                        aria: `Add ${country.name.official} to your visited countries list`,
+                        Svg: SvgWidget({
+                          className: "teaser__icon",
+                          width: "24px",
+                          height: "24px",
+                          href: "#icon--check",
+                        }),
+                      })}
+                    </>
+                  )}
                 </div>
 
                 <div className="teaser__extras">
@@ -86,7 +124,7 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                     }),
                   })}
                   {ButtonSpecialNoDivWidget({
-                    key: "addToVisited",
+                    key: "addToFavourited",
                     onClick: () => console.log("add to favourited"),
                     classNameButton: "teaser__action teaser__star",
                     aria: `Add ${country.name.official} to favourited`,

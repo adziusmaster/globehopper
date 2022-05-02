@@ -63,6 +63,7 @@ export const ButtonSpecialNoDivWidget = (
         className={props.classNameButton}
         onClick={props.onClick}
         hidden={props.hidden}
+        disabled={props.disabled}
         aria-label={props.aria}
       >
         {props.buttontext}
@@ -72,6 +73,7 @@ export const ButtonSpecialNoDivWidget = (
         className={props.classNameButton}
         onClick={props.onClick}
         hidden={props.hidden}
+        disabled={props.disabled}
         aria-label={props.aria}
       >
         {props.Svg}

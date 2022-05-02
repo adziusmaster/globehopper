@@ -25,7 +25,8 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {AllCountries({
                       countries: props.allCountries,
-                      addToVisited: props.addToFavourites,
+                      addToVisited: props.addToVisited,
+                      addOneVisit: props.addOneVisit,
                     })}
                   </>
                 )}
@@ -33,7 +34,8 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {VisitedCountries({
                       countries: props.VisitedCountries,
-                      addToVisited: props.addToFavourites,
+                      addToVisited: props.addToVisited,
+                      addOneVisit: props.addOneVisit,
                     })}
                   </>
                 )}
@@ -41,7 +43,8 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {NotVisitedCountries({
                       countries: props.NotVisitedCountries,
-                      addToVisited: props.addToFavourites,
+                      addToVisited: props.addToVisited,
+                      addOneVisit: props.addOneVisit,
                     })}
                   </>
                 )}
@@ -49,7 +52,8 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {WishlistCountries({
                       countries: props.WishlistCountries,
-                      addToVisited: props.addToFavourites,
+                      addToVisited: props.addToVisited,
+                      addOneVisit: props.addOneVisit,
                     })}
                   </>
                 )}
@@ -57,7 +61,8 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {FavoritesCountries({
                       countries: props.FavoritesCountries,
-                      addToVisited: props.addToFavourites,
+                      addToVisited: props.addToVisited,
+                      addOneVisit: props.addOneVisit,
                     })}
                   </>
                 )}

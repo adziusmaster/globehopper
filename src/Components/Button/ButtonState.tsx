@@ -8,6 +8,7 @@ type ButtonProps = {
   aria?: string;
   classNameButton?: string;
   classNameDiv?: string;
+  disabled?: boolean;
 };
 
 export type ButtonDefaultProps = ButtonProps & {

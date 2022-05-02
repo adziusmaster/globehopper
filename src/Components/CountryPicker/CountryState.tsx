@@ -46,6 +46,7 @@ export type CountrySelectorProps = {
   VisitedCountries: Country[];
   CountriesLoaded: (allCountries: Country[]) => void;
   addToFavourites: (country: Country) => void;
+  addOneVisit: (country: Country) => void;
   // onClearFilter: () => void;
   // onClearSearch: () => void;
   // selectedContinent: Continent;

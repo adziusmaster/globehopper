@@ -123,6 +123,10 @@ button:focus,
   outline: none;
 }
 
+button:disabled,
+[type="button"]:disabled {
+  cursor: not-allowed;
+}
 
 /* --------------- Global: Forms --------------- */
 
@@ -947,8 +951,8 @@ svg {
   }
 }
 
-.teaser__action:hover,
-.teaser__action:focus {
+.teaser__action:not(:disabled):hover,
+.teaser__action:not(:disabled):focus {
   background-color: #3C9F8A;
   background-color: var(--primary-light);
   color: #F6F6F6;
@@ -960,8 +964,12 @@ svg {
   fill: var(--primary-light);
 }
 
-.teaser__action:hover .teaser__icon,
-.teaser__action:focus .teaser__icon {
+.teaser__action:disabled .teaser__icon {
+  fill: rgba(0,0,0,0.2);
+}
+
+.teaser__action:not(:disabled):hover .teaser__icon,
+.teaser__action:not(:disabled):focus .teaser__icon {
   fill: #F6F6F6;
   fill: var(--support-secondary);
 }
