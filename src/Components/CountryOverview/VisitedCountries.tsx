@@ -5,13 +5,14 @@ import {
 } from "../Button/ButtonWidget";
 import SvgWidget from "../SvgWidget/SvgWidget";
 import { CountriesProps, CountryOverviewProps } from "./CountryOverviewState";
+import * as Icons from "react-bootstrap-icons";
 
 const VisitedCountries = (props: CountriesProps): JSX.Element => (
   <>
     {props.countries.map((country) => (
       <>
         <li className="overview__item">
-          <article className="teaser teaser--country checked">
+          <article className="teaser teaser--country checked starred">
             <div className="teaser__inner">
               <div className="teaser__content">
                 <header className="teaser__header">
@@ -40,6 +41,19 @@ const VisitedCountries = (props: CountriesProps): JSX.Element => (
                   <span className="sr-text">
                     {country.name.official} is in your visited countries list
                   </span>
+                  {SvgWidget({
+                    className: "teaser__check checked",
+                    width: "48px",
+                    height: "48px",
+                    href: "#icon--check",
+                  })}
+                  <div className="teaser__amount">
+                    <span className="sr-text">
+                      Number of visits to {country.name.common}:{" "}
+                    </span>{" "}
+                    {country.howManyVisits}
+                    <span aria-hidden="true">x</span>
+                  </div>
                 </div>
               </div>
 
@@ -59,9 +73,9 @@ const VisitedCountries = (props: CountriesProps): JSX.Element => (
                   })}
                   {ButtonSpecialNoDivWidget({
                     key: "addToFav",
-                    onClick: () => props.addToVisited(country),
+                    onClick: () => console.log("add to trip"),
                     classNameButton: "teaser__action teaser__add",
-                    aria: `Add ${country.name.official} to your visited countries list`,
+                    aria: `Add ${country.name.official} to the new trip`,
                     Svg: SvgWidget({
                       className: "teaser__icon",
                       width: "24px",
@@ -74,15 +88,14 @@ const VisitedCountries = (props: CountriesProps): JSX.Element => (
                 <div className="teaser__extras">
                   {ButtonSpecialNoDivWidget({
                     key: "addMoreVisits",
-                    onClick: () => console.log("more visits"),
+                    onClick: () => console.log("add a visit"),
                     classNameButton: "teaser__action teaser__plus",
                     aria: `Add one more visit to ${country.name.official}`,
-                    Svg: SvgWidget({
-                      className: "teaser__icon",
-                      width: "24px",
-                      height: "24px",
-                      href: "#icon--plus",
-                    }),
+                    Svg: (
+                      <>
+                        <Icons.Star size={24} color="" />
+                      </>
+                    ),
                   })}
 
                   {ButtonSpecialNoDivWidget({
