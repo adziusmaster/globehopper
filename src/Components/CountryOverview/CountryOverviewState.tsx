@@ -15,5 +15,5 @@ export type CountryOverviewProps = {
 
 export type CountriesProps = {
   countries: Country[];
-  addToFavourites: (country: Country) => void;
+  addToVisited: (country: Country) => void;
 };

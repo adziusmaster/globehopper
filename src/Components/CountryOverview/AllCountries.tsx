@@ -1,5 +1,8 @@
 import { AnchorLinkWidget } from "../AnchorLink/AnchorLinkWidget";
-import { ButtonSpecialWidget } from "../Button/ButtonWidget";
+import {
+  ButtonSpecialNoDivWidget,
+  ButtonSpecialWidget,
+} from "../Button/ButtonWidget";
 import SvgWidget from "../SvgWidget/SvgWidget";
 import { CountriesProps, CountryOverviewProps } from "./CountryOverviewState";
 
@@ -55,9 +58,9 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                       href: "#icon--info",
                     }),
                   })}
-                  {ButtonSpecialWidget({
-                    key: "addToFav",
-                    onClick: () => props.addToFavourites(country),
+                  {ButtonSpecialNoDivWidget({
+                    key: "addToVisited",
+                    onClick: () => props.addToVisited(country),
                     classNameButton: "teaser__action teaser__add",
                     aria: `Add ${country.name.official} to your visited countries list`,
                     Svg: SvgWidget({
@@ -70,11 +73,11 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                 </div>
 
                 <div className="teaser__extras">
-                  {ButtonSpecialWidget({
-                    key: "addMoreVisits",
-                    onClick: () => console.log("more visits"),
+                  {ButtonSpecialNoDivWidget({
+                    key: "addToWishList",
+                    onClick: () => console.log("add to wish list"),
                     classNameButton: "teaser__action teaser__plus",
-                    aria: `Add one more visit to ${country.name.official}`,
+                    aria: `Add ${country.name.official} to the wish list`,
                     Svg: SvgWidget({
                       className: "teaser__icon",
                       width: "24px",
@@ -82,12 +85,11 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                       href: "#icon--plus",
                     }),
                   })}
-
-                  {ButtonSpecialWidget({
-                    key: "addToFav",
-                    onClick: () => console.log("add to fav"),
+                  {ButtonSpecialNoDivWidget({
+                    key: "addToVisited",
+                    onClick: () => console.log("add to favourited"),
                     classNameButton: "teaser__action teaser__star",
-                    aria: `Add ${country.name.official} to favourites`,
+                    aria: `Add ${country.name.official} to favourited`,
                     Svg: SvgWidget({
                       className: "teaser__icon",
                       width: "24px",

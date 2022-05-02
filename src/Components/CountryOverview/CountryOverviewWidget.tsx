@@ -25,7 +25,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {AllCountries({
                       countries: props.allCountries,
-                      addToFavourites: props.addToFavourites,
+                      addToVisited: props.addToFavourites,
                     })}
                   </>
                 )}
@@ -33,7 +33,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {VisitedCountries({
                       countries: props.VisitedCountries,
-                      addToFavourites: props.addToFavourites,
+                      addToVisited: props.addToFavourites,
                     })}
                   </>
                 )}
@@ -41,7 +41,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {NotVisitedCountries({
                       countries: props.NotVisitedCountries,
-                      addToFavourites: props.addToFavourites,
+                      addToVisited: props.addToFavourites,
                     })}
                   </>
                 )}
@@ -49,7 +49,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {WishlistCountries({
                       countries: props.WishlistCountries,
-                      addToFavourites: props.addToFavourites,
+                      addToVisited: props.addToFavourites,
                     })}
                   </>
                 )}
@@ -57,7 +57,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                   <>
                     {FavoritesCountries({
                       countries: props.FavoritesCountries,
-                      addToFavourites: props.addToFavourites,
+                      addToVisited: props.addToFavourites,
                     })}
                   </>
                 )}

@@ -53,3 +53,29 @@ export const ButtonSpecialWidget = (props: ButtonSpecialProps): JSX.Element => (
     </div>
   </>
 );
+
+export const ButtonSpecialNoDivWidget = (
+  props: ButtonSpecialProps
+): JSX.Element => (
+  <>
+    {props.Svg === undefined ? (
+      <button
+        className={props.classNameButton}
+        onClick={props.onClick}
+        hidden={props.hidden}
+        aria-label={props.aria}
+      >
+        {props.buttontext}
+      </button>
+    ) : (
+      <button
+        className={props.classNameButton}
+        onClick={props.onClick}
+        hidden={props.hidden}
+        aria-label={props.aria}
+      >
+        {props.Svg}
+      </button>
+    )}
+  </>
+);
