@@ -7,6 +7,7 @@ import { LoginWidget } from "./Components/Login/LoginWidget";
 import { HeaderWidget } from "./Components/Header/HeaderWidget";
 import CountryOverview from "./Components/CountryOverview/CountryOverviewWidget";
 import CountryWidget from "./Components/CountryPicker/CountryWidget";
+import NotVisitedCountries from "./Components/CountryOverview/NotVisitedCountries";
 
 export type Routes =
   | "all"
@@ -61,16 +62,20 @@ export const HandleLoadedCountries: Fun<Country[], Action<AppState>> =
     let newState: AppState = {
       ...state,
       allCountries: countries,
+      NotVisitedCountries: countries,
     };
     return newState;
   };
 
-export const HandleAddToFavourites: Fun<Country, Action<AppState>> =
+export const HandleAddToVisited: Fun<Country, Action<AppState>> =
   (country: Country) => (state: AppState) => {
-    let newFavCountries = [country];
+    let newVisitedCountry = [country];
     let newState: AppState = {
       ...state,
-      FavoritesCountries: state.FavoritesCountries.concat(newFavCountries),
+      VisitedCountries: state.VisitedCountries.concat(newVisitedCountry),
+      NotVisitedCountries: state.NotVisitedCountries.filter(
+        (c) => c !== newVisitedCountry[0]
+      ),
     };
     return newState;
   };
@@ -115,7 +120,7 @@ const App = (): JSX.Element =>
                 FavoritesCountries: s0.FavoritesCountries,
                 VisitedCountries: s0.VisitedCountries,
                 addToFavourites: (e) =>
-                  setState((s0) => HandleAddToFavourites(e)(s0)),
+                  setState((s0) => HandleAddToVisited(e)(s0)),
               })}
             </>
           )}

@@ -70,33 +70,31 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                 </div>
 
                 <div className="teaser__extras">
-                  <button
-                    className="teaser__action teaser__plus"
-                    aria-label="Add a visit to Unites States of America to your visited countries list"
-                  >
-                    <svg
-                      className="teaser__icon"
-                      width="24px"
-                      height="24px"
-                      aria-hidden="true"
-                    >
-                      <use href="#icon--plus" />
-                    </svg>
-                  </button>
+                  {ButtonSpecialWidget({
+                    key: "addMoreVisits",
+                    onClick: () => console.log("more visits"),
+                    classNameButton: "teaser__action teaser__plus",
+                    aria: `Add one more visit to ${country.name.official}`,
+                    Svg: SvgWidget({
+                      className: "teaser__icon",
+                      width: "24px",
+                      height: "24px",
+                      href: "#icon--plus",
+                    }),
+                  })}
 
-                  <button
-                    className="teaser__action teaser__star"
-                    aria-label="Add Unites States of America to your favorite countries list"
-                  >
-                    <svg
-                      className="teaser__icon"
-                      width="24px"
-                      height="24px"
-                      aria-hidden="true"
-                    >
-                      <use href="#icon--heart" />
-                    </svg>
-                  </button>
+                  {ButtonSpecialWidget({
+                    key: "addToFav",
+                    onClick: () => console.log("add to fav"),
+                    classNameButton: "teaser__action teaser__star",
+                    aria: `Add ${country.name.official} to favourites`,
+                    Svg: SvgWidget({
+                      className: "teaser__icon",
+                      width: "24px",
+                      height: "24px",
+                      href: "#icon--heart",
+                    }),
+                  })}
                 </div>
               </footer>
             </div>
