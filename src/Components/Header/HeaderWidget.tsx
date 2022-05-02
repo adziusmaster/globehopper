@@ -15,7 +15,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "visited",
                 onClick: props.onVisited,
-                classNameButton: "menu__link",
+                classNameButton: `menu__link${props.currentRoute === 'visited' ? ' active' : ''}`,
                 buttontext: "Visited",
               })}
             </li>
@@ -23,7 +23,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "not visited",
                 onClick: props.onNotVisited,
-                classNameButton: "menu__link",
+                classNameButton:  `menu__link${props.currentRoute === 'notVisited' ? ' active' : ''}`,
                 buttontext: "Not Visited",
               })}
             </li>
@@ -31,7 +31,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "wish list",
                 onClick: props.onWishList,
-                classNameButton: "menu__link",
+                classNameButton:  `menu__link${props.currentRoute === 'wishList' ? ' active' : ''}`,
                 buttontext: "Wish List",
               })}
             </li>
@@ -39,7 +39,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "favorites",
                 onClick: props.onFavorites,
-                classNameButton: "menu__link",
+                classNameButton:  `menu__link${props.currentRoute === 'favotites' ? ' active' : ''}`,
                 buttontext: "Favorites",
               })}
             </li>
@@ -47,7 +47,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "all",
                 onClick: props.onAll,
-                classNameButton: "menu__link",
+                classNameButton:  `menu__link${props.currentRoute === 'all' ? ' active' : ''}`,
                 buttontext: "All",
               })}
             </li>

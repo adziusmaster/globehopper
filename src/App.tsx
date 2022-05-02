@@ -112,39 +112,38 @@ const App = (): JSX.Element =>
   stateful<AppState>()((s0) =>
     fromJSX((setState: (_: Action<AppState>) => void) => (
       <>
-        <body>
-          {!s0.isLogged ? (
-            <>
-              {LoginWidget({
-                onEmail: (e) => setState((s0) => HandleEmail(e)(s0)),
-                onPassword: (e) => setState((s0) => HandlePassword(e)(s0)),
-                onLogin: () => setState((s0) => HandleLogin(s0)),
-              })}
-            </>
-          ) : (
-            <>
-              {HeaderWidget({
-                onVisited: () => setState((s0) => Router("visited")(s0)),
-                onNotVisited: () => setState((s0) => Router("notVisited")(s0)),
-                onWishList: () => setState((s0) => Router("wishList")(s0)),
-                onFavorites: () => setState((s0) => Router("favotites")(s0)),
-                onAll: () => setState((s0) => Router("all")(s0)),
-              })}
-              {CountryWidget({
-                CountriesLoaded: (e) =>
-                  setState((s0) => HandleLoadedCountries(e)(s0)),
-                currentRoute: s0.currentRoute,
-                allCountries: s0.allCountries,
-                NotVisitedCountries: s0.NotVisitedCountries,
-                WishlistCountries: s0.WishlistCountries,
-                FavoritesCountries: s0.FavoritesCountries,
-                VisitedCountries: s0.VisitedCountries,
-                addToFavourites: (e) =>
-                  setState((s0) => HandleAddToVisited(e)(s0)),
-              })}
-            </>
-          )}
-        </body>
+        {!s0.isLogged ? (
+          <>
+            {LoginWidget({
+              onEmail: (e) => setState((s0) => HandleEmail(e)(s0)),
+              onPassword: (e) => setState((s0) => HandlePassword(e)(s0)),
+              onLogin: () => setState((s0) => HandleLogin(s0)),
+            })}
+          </>
+        ) : (
+          <>
+            {HeaderWidget({
+              onVisited: () => setState((s0) => Router("visited")(s0)),
+              onNotVisited: () => setState((s0) => Router("notVisited")(s0)),
+              onWishList: () => setState((s0) => Router("wishList")(s0)),
+              onFavorites: () => setState((s0) => Router("favotites")(s0)),
+              onAll: () => setState((s0) => Router("all")(s0)),
+              currentRoute: s0.currentRoute
+            })}
+            {CountryWidget({
+              CountriesLoaded: (e) =>
+                setState((s0) => HandleLoadedCountries(e)(s0)),
+              currentRoute: s0.currentRoute,
+              allCountries: s0.allCountries,
+              NotVisitedCountries: s0.NotVisitedCountries,
+              WishlistCountries: s0.WishlistCountries,
+              FavoritesCountries: s0.FavoritesCountries,
+              VisitedCountries: s0.VisitedCountries,
+              addToFavourites: (e) =>
+                setState((s0) => HandleAddToVisited(e)(s0)),
+            })}
+          </>
+        )}
       </>
     )).map((u) => u(s0))
   )({
