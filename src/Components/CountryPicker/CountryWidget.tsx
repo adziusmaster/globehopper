@@ -36,7 +36,6 @@ const loadCountriesIntoState = (
       favourited: false,
       wishList: false,
     };
-    console.log(newCountry);
     allCountries.push(newCountry);
     iterator = iterator + 1;
   }

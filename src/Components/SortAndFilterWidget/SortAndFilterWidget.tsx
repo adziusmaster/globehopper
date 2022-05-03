@@ -16,26 +16,6 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
               <option value="a-z">Alphabetical (descending)</option>
               <option value="z-a">Alphabetical (ascending)</option>
             </select>
-            <div className="select__fauxselect" aria-hidden="true">
-              <button
-                id="js--sort-trigger-overview"
-                className="select__trigger"
-                tabIndex={-1}
-              >
-                Amount of visits
-              </button>
-              <div className="select__options">
-                <button className="select__option" tabIndex={-1} data-sort="1">
-                  Amount of visits
-                </button>
-                <button className="select__option" tabIndex={-1} data-sort="2">
-                  Alphabetical (descending)
-                </button>
-                <button className="select__option" tabIndex={-1} data-sort="3">
-                  Alphabetical (ascending)
-                </button>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -56,66 +36,6 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
               <option value="antarctica">Antarctica</option>
               <option value="australia">Australia</option>
             </select>
-            <div className="filter__fauxselect" aria-hidden="true">
-              <button
-                id="js--filter-trigger-continent"
-                className="filter__trigger"
-                tabIndex={-1}
-              >
-                Select a continent...
-              </button>
-              <div className="filter__options">
-                <button
-                  className="filter__option"
-                  tabIndex={-1}
-                  data-continent="1"
-                >
-                  Africa
-                </button>
-                <button
-                  className="filter__option"
-                  tabIndex={-1}
-                  data-continent="2"
-                >
-                  Asia
-                </button>
-                <button
-                  className="filter__option"
-                  tabIndex={-1}
-                  data-continent="3"
-                >
-                  Europe
-                </button>
-                <button
-                  className="filter__option"
-                  tabIndex={-1}
-                  data-continent="4"
-                >
-                  North America
-                </button>
-                <button
-                  className="filter__option"
-                  tabIndex={-1}
-                  data-continent="5"
-                >
-                  South America
-                </button>
-                <button
-                  className="filter__option"
-                  tabIndex={-1}
-                  data-continent="6"
-                >
-                  Antarctica
-                </button>
-                <button
-                  className="filter__option"
-                  tabIndex={-1}
-                  data-continent="7"
-                >
-                  Australia
-                </button>
-              </div>
-            </div>
             <button
               id="js--filter-clear-continent"
               className="filter__clear"

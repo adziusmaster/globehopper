@@ -69,7 +69,7 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                     text: `More information about ${country.name.official}`,
                     Svg: (
                       <>
-                        <Icons.Info size={24} color="" />
+                        <Icons.InfoCircle size={24} color="" />
                       </>
                     ),
                   })}

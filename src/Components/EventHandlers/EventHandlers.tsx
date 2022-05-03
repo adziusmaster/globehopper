@@ -25,7 +25,7 @@ export const HandleLoadedCountries: Fun<Country[], Action<AppState>> =
     let newState: AppState = {
       ...state,
       allCountries: countries,
-      NotVisitedCountries: countries,
+      NotVisitedCountries: [...countries],
     };
     return newState;
   };
