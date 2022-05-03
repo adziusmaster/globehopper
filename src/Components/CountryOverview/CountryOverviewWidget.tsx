@@ -1,11 +1,7 @@
 import SortAndFilterWidget from "../SortAndFilterWidget/SortAndFilterWidget";
 import AllCountries from "./AllCountries";
 import { CountryOverviewProps } from "./CountryOverviewState";
-import FavoritesCountries from "./FavoritesCountries";
 import LoadingCountries from "./LoadingCountries";
-import NotVisitedCountries from "./NotVisitedCountries";
-import VisitedCountries from "./VisitedCountries";
-import WishlistCountries from "./WishlistCountries";
 
 const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
   <>
@@ -36,7 +32,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                 )}
                 {props.currentRoute === "visited" && (
                   <>
-                    {VisitedCountries({
+                    {AllCountries({
                       countries: props.VisitedCountries,
                       addToVisited: props.addToVisited,
                       removeFromVisited: props.removeFromVisited,
@@ -49,7 +45,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                 )}
                 {props.currentRoute === "notVisited" && (
                   <>
-                    {NotVisitedCountries({
+                    {AllCountries({
                       countries: props.NotVisitedCountries,
                       addToVisited: props.addToVisited,
                       removeFromVisited: props.removeFromVisited,
@@ -62,7 +58,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                 )}
                 {props.currentRoute === "wishList" && (
                   <>
-                    {WishlistCountries({
+                    {AllCountries({
                       countries: props.WishlistCountries,
                       addToVisited: props.addToVisited,
                       removeFromVisited: props.removeFromVisited,
@@ -75,7 +71,7 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
                 )}
                 {props.currentRoute === "favotites" && (
                   <>
-                    {FavoritesCountries({
+                    {AllCountries({
                       countries: props.FavoritesCountries,
                       addToVisited: props.addToVisited,
                       removeFromVisited: props.removeFromVisited,

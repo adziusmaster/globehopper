@@ -1,6 +1,6 @@
 import { HttpResult } from "widgets-for-react";
-import { Routes } from "../../App";
 import { Country, CountryState } from "../CountryPicker/CountryState";
+import { Routes } from "../EventHandlers/EventHandlers";
 
 export type CountryOverviewProps = {
   currentRoute: Routes;

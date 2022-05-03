@@ -1,6 +1,6 @@
 import { BooleanLiteral } from "typescript";
 import { AsyncState, HttpResult } from "widgets-for-react";
-import { AppState, Routes } from "../../App";
+import { Routes } from "../EventHandlers/EventHandlers";
 
 export type Country = {
   name: {
@@ -13,7 +13,7 @@ export type Country = {
     svg: string;
   };
   howManyVisits: number;
-  favourites: boolean;
+  favourited: boolean;
   wishList: boolean;
 };
 
@@ -38,7 +38,7 @@ export type CountrySelectorProps = {
   allCountries: Country[];
   NotVisitedCountries: Country[];
   WishlistCountries: Country[];
-  FavoritesCountries: Country[];
+  FavoritedCountries: Country[];
   VisitedCountries: Country[];
   CountriesLoaded: (allCountries: Country[]) => void;
   addToVisited: (country: Country) => void;

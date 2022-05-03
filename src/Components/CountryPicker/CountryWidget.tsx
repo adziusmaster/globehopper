@@ -33,7 +33,7 @@ const loadCountriesIntoState = (
       },
       name: countries[iterator].name,
       howManyVisits: 0,
-      favourites: false,
+      favourited: false,
       wishList: false,
     };
     console.log(newCountry);
@@ -71,7 +71,7 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
               allCountries: props.allCountries,
               NotVisitedCountries: props.NotVisitedCountries,
               WishlistCountries: props.WishlistCountries,
-              FavoritesCountries: props.FavoritesCountries,
+              FavoritesCountries: props.FavoritedCountries,
               VisitedCountries: props.VisitedCountries,
               kindOfResult: s0.country.kind,
               addToVisited: props.addToVisited,

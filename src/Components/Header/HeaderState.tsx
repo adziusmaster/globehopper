@@ -1,4 +1,4 @@
-import { Routes } from "../../App";
+import { Routes } from "../EventHandlers/EventHandlers";
 
 export type HeaderProps = {
   onVisited: () => void;
@@ -6,5 +6,5 @@ export type HeaderProps = {
   onWishList: () => void;
   onFavorites: () => void;
   onAll: () => void;
-  currentRoute: Routes
+  currentRoute: Routes;
 };

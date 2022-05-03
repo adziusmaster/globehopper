@@ -1,17 +1,14 @@
 import { AnchorLinkWidget } from "../AnchorLink/AnchorLinkWidget";
-import {
-  ButtonSpecialNoDivWidget,
-  ButtonSpecialWidget,
-} from "../Button/ButtonWidget";
+import { ButtonSpecialNoDivWidget } from "../Button/ButtonWidget";
 import SvgWidget from "../SvgWidget/SvgWidget";
-import { CountriesProps, CountryOverviewProps } from "./CountryOverviewState";
+import { CountriesProps } from "./CountryOverviewState";
 import * as Icons from "react-bootstrap-icons";
 
 const AllCountries = (props: CountriesProps): JSX.Element => (
   <>
     {props.countries.map((country) => (
       <>
-        <li className="overview__item">
+        <li className="overview__item" key={country.flags.png}>
           <article className="teaser teaser--country checked">
             <div className="teaser__inner">
               <div className="teaser__content">
@@ -138,7 +135,7 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
                     </>
                   )}
 
-                  {country.favourites ? (
+                  {country.favourited ? (
                     <>
                       {ButtonSpecialNoDivWidget({
                         key: "removeFromFavourited",

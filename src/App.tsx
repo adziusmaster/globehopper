@@ -1,238 +1,26 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Country } from "./Components/CountryPicker/CountryState";
 import { Action, fromJSX, Fun, stateful } from "widgets-for-react";
 import { LoginWidget } from "./Components/Login/LoginWidget";
 import { HeaderWidget } from "./Components/Header/HeaderWidget";
-import CountryOverview from "./Components/CountryOverview/CountryOverviewWidget";
 import CountryWidget from "./Components/CountryPicker/CountryWidget";
-import NotVisitedCountries from "./Components/CountryOverview/NotVisitedCountries";
-
-export type Routes =
-  | "all"
-  | "notVisited"
-  | "wishList"
-  | "favotites"
-  | "visited";
-
-export type AppState = {
-  email: string;
-  password: string;
-  isLogged: boolean;
-  currentRoute: Routes;
-  allCountries: Country[];
-  NotVisitedCountries: Country[];
-  WishlistCountries: Country[];
-  FavoritesCountries: Country[];
-  VisitedCountries: Country[];
-};
-
-export const HandleEmail: Fun<
-  React.ChangeEvent<HTMLInputElement>,
-  Action<AppState>
-> = (event: React.ChangeEvent<HTMLInputElement>) => (state: AppState) => ({
-  ...state,
-  email: event.currentTarget.value,
-});
-
-export const HandlePassword: Fun<
-  React.ChangeEvent<HTMLInputElement>,
-  Action<AppState>
-> = (event: React.ChangeEvent<HTMLInputElement>) => (state: AppState) => ({
-  ...state,
-  password: event.currentTarget.value,
-});
-
-export const HandleLogin: Action<AppState> = (state: AppState) => {
-  if (state.email === "e" && state.password === "p") {
-    return {
-      ...state,
-      isLogged: true,
-    };
-  } else
-    return {
-      ...state,
-      isLogged: false,
-    };
-};
-
-export const HandleLoadedCountries: Fun<Country[], Action<AppState>> =
-  (countries: Country[]) => (state: AppState) => {
-    let newState: AppState = {
-      ...state,
-      allCountries: countries,
-      NotVisitedCountries: countries,
-    };
-    return newState;
-  };
-
-export const HandleAddToVisited: Fun<Country, Action<AppState>> =
-  (country: Country) => (state: AppState) => {
-    country.howManyVisits = 1;
-    let newVisitedCountry = [country];
-    let newState: AppState = { ...state };
-    let foundCountry = state.VisitedCountries.find(
-      (c) => c.name === country.name
-    );
-    if (foundCountry === undefined) {
-      newState = {
-        ...state,
-        VisitedCountries: state.VisitedCountries.concat(newVisitedCountry),
-        NotVisitedCountries: state.NotVisitedCountries.filter(
-          (c) => c !== newVisitedCountry[0]
-        ),
-      };
-    } else {
-      let updatedCountries: Country[] = state.VisitedCountries;
-      let index = state.VisitedCountries.indexOf(foundCountry);
-      let updatedCountry: Country = {
-        ...foundCountry,
-        howManyVisits: foundCountry.howManyVisits + 1,
-      };
-      updatedCountries.splice(index, 1, updatedCountry);
-      newState = {
-        ...state,
-        VisitedCountries: updatedCountries,
-      };
-    }
-
-    return newState;
-  };
-export const HandleAddToFavourites: Fun<Country, Action<AppState>> =
-  (country: Country) => (state: AppState) => {
-    let updatedCountry: Country = {
-      ...country,
-      favourites: true,
-    };
-    let newFavouritedCountry = [updatedCountry];
-    let newState: AppState = { ...state };
-
-    let indexInAllCountries = state.allCountries.indexOf(country);
-
-    let updatedAllCountries = state.allCountries;
-
-    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
-
-    newState = {
-      ...state,
-      allCountries: updatedAllCountries,
-      FavoritesCountries: state.FavoritesCountries.concat(newFavouritedCountry),
-    };
-
-    return newState;
-  };
-export const HandleAddToWishList: Fun<Country, Action<AppState>> =
-  (country: Country) => (state: AppState) => {
-    let updatedCountry: Country = {
-      ...country,
-      wishList: true,
-    };
-    let newWishListCountry = [updatedCountry];
-    let newState: AppState = { ...state };
-
-    let indexInAllCountries = state.allCountries.indexOf(country);
-
-    let updatedAllCountries = state.allCountries;
-
-    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
-
-    newState = {
-      ...state,
-      allCountries: updatedAllCountries,
-      WishlistCountries: state.WishlistCountries.concat(newWishListCountry),
-    };
-
-    return newState;
-  };
-export const HandleRemoveFromFavourites: Fun<Country, Action<AppState>> =
-  (country: Country) => (state: AppState) => {
-    let updatedCountry: Country = {
-      ...country,
-      favourites: false,
-    };
-    let newState: AppState = { ...state };
-
-    let indexInAllCountries = state.allCountries.indexOf(country);
-
-    let indexInFavouritesCountries = state.FavoritesCountries.indexOf(country);
-
-    let updatedAllCountries = state.allCountries;
-    let updatedFavouritesCountries = state.FavoritesCountries;
-
-    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
-    updatedFavouritesCountries.splice(indexInFavouritesCountries, 1);
-
-    newState = {
-      ...state,
-      allCountries: updatedAllCountries,
-      FavoritesCountries: updatedFavouritesCountries,
-    };
-
-    return newState;
-  };
-export const HandleRemoveFromWishList: Fun<Country, Action<AppState>> =
-  (country: Country) => (state: AppState) => {
-    let updatedCountry: Country = {
-      ...country,
-      wishList: false,
-    };
-    let newState: AppState = { ...state };
-
-    let indexInAllCountries = state.allCountries.indexOf(country);
-
-    let indexInWishListCountries = state.WishlistCountries.indexOf(country);
-
-    let updatedAllCountries = state.allCountries;
-    let updatedWishListCountries = state.WishlistCountries;
-
-    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
-    updatedWishListCountries.splice(indexInWishListCountries, 1);
-
-    newState = {
-      ...state,
-      allCountries: updatedAllCountries,
-      WishlistCountries: updatedWishListCountries,
-    };
-
-    return newState;
-  };
-export const HandleRemoveFromVisited: Fun<Country, Action<AppState>> =
-  (country: Country) => (state: AppState) => {
-    let newState: AppState = { ...state };
-
-    let updatedVisitedCountries = state.VisitedCountries.filter(
-      (c) => c.name !== country.name
-    );
-    let indexInAllCountries = state.allCountries.findIndex(
-      (c) => c.name === country.name
-    );
-
-    let updatedCountry: Country = {
-      ...country,
-      howManyVisits: 0,
-    };
-
-    let updatedAllCountries = state.allCountries;
-
-    updatedAllCountries.splice(indexInAllCountries, 1, updatedCountry);
-
-    newState = {
-      ...state,
-      allCountries: updatedAllCountries,
-      VisitedCountries: updatedVisitedCountries,
-    };
-
-    return newState;
-  };
-
-export const Router: Fun<Routes, Action<AppState>> =
-  (route: Routes) => (state: AppState) => {
-    return {
-      ...state,
-      currentRoute: route,
-    };
-  };
+import {
+  AppState,
+  HandleLoadedCountries,
+  Router,
+} from "./Components/EventHandlers/EventHandlers";
+import { HandleAddToFavourites } from "./Components/EventHandlers/HandleFavourited/AddToFavourited";
+import { HandleRemoveFromFavourited } from "./Components/EventHandlers/HandleFavourited/RemoveFromFavourited";
+import { HandleAddToVisited } from "./Components/EventHandlers/HandleVisited/AddToVisited";
+import { HandleRemoveFromVisited } from "./Components/EventHandlers/HandleVisited/RemoveFromVisited";
+import { HandleAddToWishList } from "./Components/EventHandlers/HandleWishList/AddToWishList";
+import { HandleRemoveFromWishList } from "./Components/EventHandlers/HandleWishList/RemoveFromWishList";
+import {
+  HandleEmail,
+  HandlePassword,
+  HandleLogin,
+} from "./Components/EventHandlers/LoginEvents";
 
 const App = (): JSX.Element =>
   stateful<AppState>()((s0) =>
@@ -263,7 +51,7 @@ const App = (): JSX.Element =>
               allCountries: s0.allCountries,
               NotVisitedCountries: s0.NotVisitedCountries,
               WishlistCountries: s0.WishlistCountries,
-              FavoritesCountries: s0.FavoritesCountries,
+              FavoritedCountries: s0.FavouritedCountries,
               VisitedCountries: s0.VisitedCountries,
               addToVisited: (e) => setState((s0) => HandleAddToVisited(e)(s0)),
               removeFromVisited: (e) =>
@@ -271,7 +59,7 @@ const App = (): JSX.Element =>
               addToFavourites: (e) =>
                 setState((s0) => HandleAddToFavourites(e)(s0)),
               removeFromFavourites: (e) =>
-                setState((s0) => HandleRemoveFromFavourites(e)(s0)),
+                setState((s0) => HandleRemoveFromFavourited(e)(s0)),
               addToWishList: (e) =>
                 setState((s0) => HandleAddToWishList(e)(s0)),
               removeFromWishList: (e) =>
@@ -289,7 +77,7 @@ const App = (): JSX.Element =>
     allCountries: [],
     NotVisitedCountries: [],
     WishlistCountries: [],
-    FavoritesCountries: [],
+    FavouritedCountries: [],
     VisitedCountries: [],
   }).run((s0) => s0);
 

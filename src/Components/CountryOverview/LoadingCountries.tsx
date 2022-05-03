@@ -1,7 +1,3 @@
-import { ButtonSpecialWidget } from "../Button/ButtonWidget";
-import SvgWidget from "../SvgWidget/SvgWidget";
-import { CountriesProps, CountryOverviewProps } from "./CountryOverviewState";
-
 const LoadingCountries = (): JSX.Element => (
   <>
     <li className="overview__item">
