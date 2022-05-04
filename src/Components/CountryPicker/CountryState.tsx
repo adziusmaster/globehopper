@@ -41,6 +41,7 @@ export type CountrySelectorProps = {
   VisitedCountries: Country[];
   selectedContinent: Continent;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onClear: () => void;
   CountriesLoaded: (allCountries: Country[]) => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;

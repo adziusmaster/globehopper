@@ -11,6 +11,7 @@ export type CountryOverviewProps = {
   kindOfResult: string;
   selectedContinent: Continent;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onClear: () => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;
@@ -23,6 +24,7 @@ export type CountriesProps = {
   countries: Country[];
   selectedContinent: Continent;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onClear: () => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;

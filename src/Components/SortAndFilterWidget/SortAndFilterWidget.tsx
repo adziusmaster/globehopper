@@ -44,9 +44,7 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
             </select>
             {ButtonSpecialNoDivWidget({
               key: "clearFilter",
-              onClick: function (a: any): void {
-                console.log("clear");
-              },
+              onClick: props.onClear,
               classNameButton: "filter__clear",
               Svg: (
                 <>

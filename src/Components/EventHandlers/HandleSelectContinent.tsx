@@ -12,3 +12,12 @@ export const HandleContinentChange: Fun<
 
   return newState;
 };
+
+export const HandleOnClear: Action<AppState> = (state: AppState) => {
+  let newState: AppState = {
+    ...state,
+    selectedContinent: "All",
+  };
+
+  return newState;
+};

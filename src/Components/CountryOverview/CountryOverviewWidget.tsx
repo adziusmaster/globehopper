@@ -9,7 +9,11 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
       <div className="main__inner container">
         <section id="a11y--countries" className="overview overview--countries">
           <h2 className="sr-text">Overview</h2>
-          {SortAndFilterWidget({ onChange: props.onChange })}
+          {SortAndFilterWidget({
+            onChange: props.onChange,
+            onClear: props.onClear,
+            selectedContinent: props.selectedContinent,
+          })}
           {props.kindOfResult === "loading" ? (
             <>
               <ul className="overview__list">{LoadingCountries()}</ul>

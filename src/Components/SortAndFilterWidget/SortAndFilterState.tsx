@@ -1,12 +1,5 @@
 export type SortAndFilterProps = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onClear: () => void;
+  selectedContinent: string;
 };
-export type Continent =
-  | "All"
-  | "Africa"
-  | "Asia"
-  | "Europe"
-  | "South America"
-  | "North America"
-  | "Oceania"
-  | "Antarctica";

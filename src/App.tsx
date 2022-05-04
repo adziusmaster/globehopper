@@ -21,7 +21,10 @@ import {
   HandleLogin,
 } from "./Components/EventHandlers/LoginEvents";
 import { Continent, Country } from "./Components/CountryPicker/CountryState";
-import { HandleContinentChange } from "./Components/EventHandlers/HandleSelectContinent";
+import {
+  HandleContinentChange,
+  HandleOnClear,
+} from "./Components/EventHandlers/HandleSelectContinent";
 
 export type AppState = {
   email: string;
@@ -70,6 +73,7 @@ const App = (): JSX.Element =>
               FavoritedCountries: s0.FavouritedCountries,
               VisitedCountries: s0.VisitedCountries,
               onChange: (e) => setState((s0) => HandleContinentChange(e)(s0)),
+              onClear: () => setState((s0) => HandleOnClear(s0)),
               addToVisited: (e) => setState((s0) => HandleAddToVisited(e)(s0)),
               removeFromVisited: (e) =>
                 setState((s0) => HandleRemoveFromVisited(e)(s0)),
