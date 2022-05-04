@@ -24,5 +24,7 @@ export const Router: Fun<Routes, Action<AppState>> =
     return {
       ...state,
       currentRoute: route,
+      searchedName: "",
+      selectedContinent: "All",
     };
   };
