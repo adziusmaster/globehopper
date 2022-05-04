@@ -18,7 +18,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 classNameButton: `menu__link${
                   props.currentRoute === "all" ? " active" : ""
                 }`,
-                buttontext: `All (${props.counts.allCountries})`,
+                label: `All (${props.counts.allCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-visited">
@@ -28,7 +28,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 classNameButton: `menu__link${
                   props.currentRoute === "visited" ? " active" : ""
                 }`,
-                buttontext: `Visited (${props.counts.VisitedCountries})`,
+                label: `Visited (${props.counts.VisitedCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-notvisited">
@@ -38,7 +38,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 classNameButton: `menu__link${
                   props.currentRoute === "notVisited" ? " active" : ""
                 }`,
-                buttontext: `Not Visited (${props.counts.NotVisitedCountries})`,
+                label: `Not Visited (${props.counts.NotVisitedCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-wishlist">
@@ -48,7 +48,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 classNameButton: `menu__link${
                   props.currentRoute === "wishList" ? " active" : ""
                 }`,
-                buttontext: `Wish List (${props.counts.WishlistCountries})`,
+                label: `Wish List (${props.counts.WishlistCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-favorites">
@@ -58,7 +58,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 classNameButton: `menu__link${
                   props.currentRoute === "favotites" ? " active" : ""
                 }`,
-                buttontext: `Favorites (${props.counts.FavoritedCountries})`,
+                label: `Favorites (${props.counts.FavoritedCountries})`,
               })}
             </li>
           </ul>

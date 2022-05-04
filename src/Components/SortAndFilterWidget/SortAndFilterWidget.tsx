@@ -22,7 +22,7 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
               key: "clearSearch",
               onClick: props.onClearSearch,
               classNameButton: "filter__clear",
-              Svg: (
+              label: (
                 <>
                   <Icons.X size={24} color="" />
                 </>
@@ -56,7 +56,7 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
               key: "clearFilter",
               onClick: props.onClear,
               classNameButton: "filter__clear",
-              Svg: (
+              label: (
                 <>
                   <Icons.X size={24} color="" />
                 </>

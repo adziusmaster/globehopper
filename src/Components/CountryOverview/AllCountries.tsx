@@ -81,7 +81,9 @@ const TeaserCountry = (
                 onClick: () => parentProps.showModal(country),
                 classNameButton: "teaser__action teaser__info",
                 aria: `More information about ${country.name.common}`,
-                Svg: (
+                ariaControls: `tm-${country.cca3}`,
+                ariaExpanded: country.modalVisible,
+                label: (
                   <>
                     <Icons.InfoCircle size={24} color="" />
                   </>
@@ -94,7 +96,7 @@ const TeaserCountry = (
                     onClick: () => parentProps.addToVisited(country),
                     classNameButton: "teaser__action teaser__add",
                     aria: `Add ${country.name.common} to your visited countries list`,
-                    Svg: (
+                    label: (
                       <>
                         <Icons.CheckCircle size={24} color="" />
                       </>
@@ -108,7 +110,7 @@ const TeaserCountry = (
                     onClick: () => parentProps.removeFromVisited(country),
                     classNameButton: "teaser__action teaser__add",
                     aria: `Remove ${country.name.common} from your visited countries list`,
-                    Svg: (
+                    label: (
                       <>
                         <Icons.CheckCircleFill size={24} color="" />
                       </>
@@ -126,7 +128,7 @@ const TeaserCountry = (
                     onClick: () => parentProps.removeFromWishList(country),
                     classNameButton: "teaser__action teaser__star",
                     aria: `Remove ${country.name.common} from the wish list`,
-                    Svg: (
+                    label: (
                       <>
                         <Icons.StarFill size={24} color="" />
                       </>
@@ -140,7 +142,7 @@ const TeaserCountry = (
                     onClick: () => parentProps.addToWishList(country),
                     classNameButton: "teaser__action teaser__star",
                     aria: `Add ${country.name.common} to the wish list`,
-                    Svg: (
+                    label: (
                       <>
                         <Icons.Star size={24} color="" />
                       </>
@@ -156,7 +158,7 @@ const TeaserCountry = (
                     onClick: () => parentProps.removeFromFavourites(country),
                     classNameButton: "teaser__action teaser__heart",
                     aria: `Remove ${country.name.common} from favourited`,
-                    Svg: (
+                    label: (
                       <>
                         <Icons.HeartFill size={24} color="" />
                       </>
@@ -170,7 +172,7 @@ const TeaserCountry = (
                     onClick: () => parentProps.addToFavourites(country),
                     classNameButton: "teaser__action teaser__heart",
                     aria: `Add ${country.name.common} to favourited`,
-                    Svg: (
+                    label: (
                       <>
                         <Icons.Heart size={24} color="" />
                       </>
@@ -187,7 +189,7 @@ const TeaserCountry = (
                   onClick: () => null,
                   classNameButton: "teaser__action teaser__plus",
                   aria: `Add another visit to ${country.name.common} to your visited countries list`,
-                  Svg: (
+                  label: (
                     <>
                       <Icons.PlusCircle size={24} color="" />
                     </>
@@ -199,7 +201,7 @@ const TeaserCountry = (
                   onClick: () => null,
                   classNameButton: "teaser__action teaser__minus",
                   aria: `Remove a visit to ${country.name.common} from your visited countries list`,
-                  Svg: (
+                  label: (
                     <>
                       <Icons.DashCircle size={24} color="" />
                     </>

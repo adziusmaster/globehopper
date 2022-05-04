@@ -31,7 +31,7 @@ export const LoginWidget = (props: LoginProps): JSX.Element => {
             {ButtonWidget({
               key: "loginButton",
               onClick: props.onLogin,
-              buttontext: "Continue",
+              label: "Continue",
               classNameButton: "button",
               classNameDiv: "login__action",
             })}

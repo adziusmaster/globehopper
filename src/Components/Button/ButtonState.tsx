@@ -1,9 +1,11 @@
 type ButtonProps = {
   key: string;
-  buttontext?: string;
+  label: JSX.Element | string;
   hidden?: boolean;
   form?: string;
   aria?: string;
+  ariaControls?: string;
+  ariaExpanded?: boolean;
   classNameButton?: string;
   classNameDiv?: string;
   disabled?: boolean;
@@ -11,10 +13,8 @@ type ButtonProps = {
 
 export type ButtonDefaultProps = ButtonProps & {
   onClick: () => void;
-  Svg?: JSX.Element;
 };
 
 export type ButtonPassOneProps = ButtonProps & {
   onClick: (a: any) => void;
-  Svg?: JSX.Element;
 };
