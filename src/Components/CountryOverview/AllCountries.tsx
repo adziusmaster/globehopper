@@ -7,7 +7,7 @@ import { Country } from "../CountryPicker/CountryState";
 
 const TeaserCountry = (country: Country, parentProps: CountriesProps): JSX.Element => (
   <li className="overview__item" key={`tc-${country.cca3}`}>
-    <article className={`teaser teaser--country${country.howManyVisits > 0 ? ' checked' : ''}`}>
+    <article className={`teaser teaser--country${country.howManyVisits > 0 ? ' checked' : ''}${country.favourited === true ? ' favorited' : ''}${country.wishList === true ? ' starred' : ''}`}>
       <div className="teaser__inner">
         <div className="teaser__content">
           <header className="teaser__header">
@@ -52,6 +52,11 @@ const TeaserCountry = (country: Country, parentProps: CountriesProps): JSX.Eleme
                   height: "48px",
                   href: "#icon--check",
                 })}
+                {country.howManyVisits > 1 && (
+                  <div className="teaser__amount">
+                    <span className="sr-text">Number of visits to {country.name.common}: </span>{country.howManyVisits}<span aria-hidden="true">x</span>
+                  </div>
+                )}
               </div>
             </>
           )}
@@ -107,7 +112,7 @@ const TeaserCountry = (country: Country, parentProps: CountriesProps): JSX.Eleme
                 {ButtonSpecialNoDivWidget({
                   key: "removeFromWishList",
                   onClick: () => parentProps.removeFromWishList(country),
-                  classNameButton: "teaser__action teaser__plus",
+                  classNameButton: "teaser__action teaser__star",
                   aria: `Remove ${country.name.common} from the wish list`,
                   Svg: (
                     <>
@@ -121,7 +126,7 @@ const TeaserCountry = (country: Country, parentProps: CountriesProps): JSX.Eleme
                 {ButtonSpecialNoDivWidget({
                   key: "addToWishList",
                   onClick: () => parentProps.addToWishList(country),
-                  classNameButton: "teaser__action teaser__plus",
+                  classNameButton: "teaser__action teaser__star",
                   aria: `Add ${country.name.common} to the wish list`,
                   Svg: (
                     <>
@@ -137,7 +142,7 @@ const TeaserCountry = (country: Country, parentProps: CountriesProps): JSX.Eleme
                 {ButtonSpecialNoDivWidget({
                   key: "removeFromFavourited",
                   onClick: () => parentProps.removeFromFavourites(country),
-                  classNameButton: "teaser__action teaser__star",
+                  classNameButton: "teaser__action teaser__heart",
                   aria: `Remove ${country.name.common} from favourited`,
                   Svg: (
                     <>
@@ -151,7 +156,7 @@ const TeaserCountry = (country: Country, parentProps: CountriesProps): JSX.Eleme
                 {ButtonSpecialNoDivWidget({
                   key: "addToFavourited",
                   onClick: () => parentProps.addToFavourites(country),
-                  classNameButton: "teaser__action teaser__star",
+                  classNameButton: "teaser__action teaser__heart",
                   aria: `Add ${country.name.common} to favourited`,
                   Svg: (
                     <>
@@ -162,6 +167,34 @@ const TeaserCountry = (country: Country, parentProps: CountriesProps): JSX.Eleme
               </>
             )}
           </div>
+
+          {country.howManyVisits > 0 && (
+            <div className="teaser__counter">
+              {ButtonSpecialNoDivWidget({
+                key: "addAnotherVisit",
+                onClick: () => parentProps.addToVisited(country),
+                classNameButton: "teaser__action teaser__plus",
+                aria: `Add another visit to ${country.name.common} to your visited countries list`,
+                Svg: (
+                  <>
+                    <Icons.PlusCircle size={24} color="" />
+                  </>
+                ),
+              })}
+
+              {ButtonSpecialNoDivWidget({
+                key: "removeVisit",
+                onClick: () => parentProps.addToVisited(country),
+                classNameButton: "teaser__action teaser__minus",
+                aria: `Remove a visit to ${country.name.common} from your visited countries list`,
+                Svg: (
+                  <>
+                    <Icons.DashCircle size={24} color="" />
+                  </>
+                ),
+              })}
+            </div>
+          )}
         </footer>
       </div>
     </article>
