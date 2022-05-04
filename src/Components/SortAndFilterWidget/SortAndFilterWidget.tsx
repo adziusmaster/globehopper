@@ -1,4 +1,6 @@
+import { ButtonSpecialNoDivWidget } from "../Button/ButtonWidget";
 import { SortAndFilterProps } from "./SortAndFilterState";
+import * as Icons from "react-bootstrap-icons";
 
 const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
   <>
@@ -10,11 +12,11 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
           </label>
           <div id="js--sort-overview" className="select__inner">
             <select id="a11y--sort-overview" className="select__input">
-              <option value="amount" selected>
-                Amount of visits
+              <option value="a-z" selected>
+                Alphabetical
               </option>
-              <option value="a-z">Alphabetical (descending)</option>
-              <option value="z-a">Alphabetical (ascending)</option>
+              <option value="favs">Most Favourited</option>
+              <option value="wishes">Most WishListed</option>
             </select>
           </div>
         </div>
@@ -24,32 +26,34 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
             Filter on continent:
           </label>
           <div id="js--filter-continent" className="filter__inner">
-            <select id="a11y--filter-continent" className="filter__select">
-              <option value="" selected>
-                Select a continent...
-              </option>
-              <option value="africa">Africa</option>
-              <option value="asia">Asia</option>
-              <option value="europe">Europe</option>
-              <option value="north-ameria">North America</option>
-              <option value="south-america">South America</option>
-              <option value="antarctica">Antarctica</option>
-              <option value="australia">Australia</option>
-            </select>
-            <button
-              id="js--filter-clear-continent"
-              className="filter__clear"
-              aria-label="Clear the filter"
+            <select
+              id="a11y--filter-continent"
+              className="filter__select"
+              onChange={(e) => props.onChange(e)}
             >
-              <svg
-                className="filter__icon"
-                width="24px"
-                height="24px"
-                aria-hidden="true"
-              >
-                <use href="#icon--cross" />
-              </svg>
-            </button>
+              <option value="All" selected>
+                All
+              </option>
+              <option value="Africa">Africa</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="South America">South America</option>
+              <option value="North America">North America</option>
+              <option value="Oceania">Oceania</option>
+              <option value="Antarctica">Antarctica</option>
+            </select>
+            {ButtonSpecialNoDivWidget({
+              key: "clearFilter",
+              onClick: function (a: any): void {
+                console.log("clear");
+              },
+              classNameButton: "filter__clear",
+              Svg: (
+                <>
+                  <Icons.X size={24} color="" />
+                </>
+              ),
+            })}
           </div>
         </div>
       </div>

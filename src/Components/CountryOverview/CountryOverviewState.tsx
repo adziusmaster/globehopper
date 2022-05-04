@@ -1,5 +1,4 @@
-import { HttpResult } from "widgets-for-react";
-import { Country, CountryState } from "../CountryPicker/CountryState";
+import { Continent, Country } from "../CountryPicker/CountryState";
 import { Routes } from "../EventHandlers/EventHandlers";
 
 export type CountryOverviewProps = {
@@ -10,6 +9,8 @@ export type CountryOverviewProps = {
   FavoritesCountries: Country[];
   VisitedCountries: Country[];
   kindOfResult: string;
+  selectedContinent: Continent;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;
@@ -20,6 +21,8 @@ export type CountryOverviewProps = {
 
 export type CountriesProps = {
   countries: Country[];
+  selectedContinent: Continent;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;

@@ -1,4 +1,3 @@
-import { Action, IOWidget } from "widgets-for-react";
 import { ButtonWidget } from "../Button/ButtonWidget";
 import InputWidget from "../Input/InputWidget";
 import { LoginProps } from "./LoginState";

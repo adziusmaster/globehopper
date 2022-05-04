@@ -1,4 +1,4 @@
-import { async, HttpResult } from "widgets-for-react";
+import { HttpResult } from "widgets-for-react";
 import { Country } from "./CountryState";
 
 export const fetchCountries = async (): Promise<HttpResult<Country[]>> => {

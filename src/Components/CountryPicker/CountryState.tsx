@@ -1,5 +1,4 @@
-import { BooleanLiteral } from "typescript";
-import { AsyncState, HttpResult } from "widgets-for-react";
+import { AsyncState } from "widgets-for-react";
 import { Routes } from "../EventHandlers/EventHandlers";
 
 export type Country = {
@@ -40,6 +39,8 @@ export type CountrySelectorProps = {
   WishlistCountries: Country[];
   FavoritedCountries: Country[];
   VisitedCountries: Country[];
+  selectedContinent: Continent;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   CountriesLoaded: (allCountries: Country[]) => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;

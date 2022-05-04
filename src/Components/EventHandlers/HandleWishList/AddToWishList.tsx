@@ -1,6 +1,6 @@
 import { Fun, Action } from "widgets-for-react";
+import { AppState } from "../../../App";
 import { Country } from "../../CountryPicker/CountryState";
-import { AppState } from "../EventHandlers";
 
 export const HandleAddToWishList: Fun<Country, Action<AppState>> =
   (country: Country) => (state: AppState) => {

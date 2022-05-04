@@ -1,14 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { Action, fromJSX, Fun, stateful } from "widgets-for-react";
+import { Action, fromJSX, stateful } from "widgets-for-react";
 import { LoginWidget } from "./Components/Login/LoginWidget";
 import { HeaderWidget } from "./Components/Header/HeaderWidget";
 import CountryWidget from "./Components/CountryPicker/CountryWidget";
 import {
-  AppState,
   HandleLoadedCountries,
   Router,
+  Routes,
 } from "./Components/EventHandlers/EventHandlers";
 import { HandleAddToFavourites } from "./Components/EventHandlers/HandleFavourited/AddToFavourited";
 import { HandleRemoveFromFavourited } from "./Components/EventHandlers/HandleFavourited/RemoveFromFavourited";
@@ -21,6 +20,22 @@ import {
   HandlePassword,
   HandleLogin,
 } from "./Components/EventHandlers/LoginEvents";
+import { Continent, Country } from "./Components/CountryPicker/CountryState";
+import { HandleContinentChange } from "./Components/EventHandlers/HandleSelectContinent";
+
+export type AppState = {
+  email: string;
+  password: string;
+  isLogged: boolean;
+  currentRoute: Routes;
+  filtered: boolean;
+  selectedContinent: Continent;
+  allCountries: Country[];
+  VisitedCountries: Country[];
+  NotVisitedCountries: Country[];
+  FavouritedCountries: Country[];
+  WishlistCountries: Country[];
+};
 
 const App = (): JSX.Element =>
   stateful<AppState>()((s0) =>
@@ -49,10 +64,12 @@ const App = (): JSX.Element =>
                 setState((s0) => HandleLoadedCountries(e)(s0)),
               currentRoute: s0.currentRoute,
               allCountries: s0.allCountries,
+              selectedContinent: s0.selectedContinent,
               NotVisitedCountries: s0.NotVisitedCountries,
               WishlistCountries: s0.WishlistCountries,
               FavoritedCountries: s0.FavouritedCountries,
               VisitedCountries: s0.VisitedCountries,
+              onChange: (e) => setState((s0) => HandleContinentChange(e)(s0)),
               addToVisited: (e) => setState((s0) => HandleAddToVisited(e)(s0)),
               removeFromVisited: (e) =>
                 setState((s0) => HandleRemoveFromVisited(e)(s0)),
@@ -74,6 +91,8 @@ const App = (): JSX.Element =>
     password: "",
     isLogged: true,
     currentRoute: "all",
+    filtered: false,
+    selectedContinent: "All",
     allCountries: [],
     NotVisitedCountries: [],
     WishlistCountries: [],

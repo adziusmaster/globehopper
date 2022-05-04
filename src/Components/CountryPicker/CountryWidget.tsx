@@ -7,15 +7,8 @@ import {
   loadingAsyncState,
 } from "widgets-for-react";
 import CountryOverview from "../CountryOverview/CountryOverviewWidget";
-import InputWidget from "../Input/InputWidget";
 import { fetchCountries } from "./CountryApi";
-import {
-  allContinents,
-  Continent,
-  Country,
-  CountrySelectorProps,
-  CountryState,
-} from "./CountryState";
+import { Country, CountrySelectorProps, CountryState } from "./CountryState";
 
 const loadCountriesIntoState = (
   countries: Country[],
@@ -73,6 +66,8 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
               FavoritesCountries: props.FavoritedCountries,
               VisitedCountries: props.VisitedCountries,
               kindOfResult: s0.country.kind,
+              selectedContinent: props.selectedContinent,
+              onChange: props.onChange,
               addToVisited: props.addToVisited,
               removeFromVisited: props.removeFromVisited,
               addToFavourites: props.addToFavourites,

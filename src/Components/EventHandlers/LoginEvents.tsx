@@ -1,5 +1,5 @@
 import { Fun, Action } from "widgets-for-react";
-import { AppState } from "./EventHandlers";
+import { AppState } from "../../App";
 
 export const HandleEmail: Fun<
   React.ChangeEvent<HTMLInputElement>,

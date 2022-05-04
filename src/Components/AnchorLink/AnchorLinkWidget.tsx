@@ -1,4 +1,3 @@
-import SvgWidget from "../SvgWidget/SvgWidget";
 import { AnchorLinkProps } from "./AnchorLinkState";
 
 export const AnchorLinkWidget = (props: AnchorLinkProps): JSX.Element => (
