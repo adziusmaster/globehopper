@@ -30,10 +30,9 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
               id="a11y--filter-continent"
               className="filter__select"
               onChange={(e) => props.onChange(e)}
+              value={props.selectedContinent}
             >
-              <option value="All" selected>
-                All
-              </option>
+              <option value="All">All</option>
               <option value="Africa">Africa</option>
               <option value="Asia">Asia</option>
               <option value="Europe">Europe</option>
