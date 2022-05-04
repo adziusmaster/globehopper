@@ -80,6 +80,8 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
                 onChange: props.onChange,
                 onClear: props.onClear,
                 selectedContinent: props.selectedContinent,
+                searchedName: props.searchedName,
+                onSearch: props.onSearch,
               }
             )}
           </>

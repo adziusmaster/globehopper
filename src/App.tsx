@@ -24,6 +24,7 @@ import { Continent, Country } from "./Components/CountryPicker/CountryState";
 import {
   HandleContinentChange,
   HandleOnClear,
+  HandleOnSearch,
 } from "./Components/EventHandlers/HandleSelectContinent";
 
 export type AppState = {
@@ -33,6 +34,7 @@ export type AppState = {
   currentRoute: Routes;
   filtered: boolean;
   selectedContinent: Continent;
+  searchedName: string;
   allCountries: Country[];
   VisitedCountries: Country[];
   NotVisitedCountries: Country[];
@@ -72,8 +74,10 @@ const App = (): JSX.Element =>
               WishlistCountries: s0.WishlistCountries,
               FavoritedCountries: s0.FavouritedCountries,
               VisitedCountries: s0.VisitedCountries,
+              searchedName: s0.searchedName,
               onChange: (e) => setState((s0) => HandleContinentChange(e)(s0)),
               onClear: () => setState((s0) => HandleOnClear(s0)),
+              onSearch: (e) => setState((s0) => HandleOnSearch(e)(s0)),
               addToVisited: (e) => setState((s0) => HandleAddToVisited(e)(s0)),
               removeFromVisited: (e) =>
                 setState((s0) => HandleRemoveFromVisited(e)(s0)),
@@ -97,6 +101,7 @@ const App = (): JSX.Element =>
     currentRoute: "all",
     filtered: false,
     selectedContinent: "All",
+    searchedName: "",
     allCountries: [],
     NotVisitedCountries: [],
     WishlistCountries: [],

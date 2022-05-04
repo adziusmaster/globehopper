@@ -21,6 +21,19 @@ const SortAndFilterWidget = (props: SortAndFilterProps): JSX.Element => (
           </div>
         </div>
 
+        <div className="search">
+          <label className="filter__label" htmlFor="a11y--search-country">
+            Search for country:
+          </label>
+          <div id="js--search-country">
+            <input
+              className="search__input"
+              onChange={props.onSearch}
+              value={props.searchedName}
+            ></input>
+          </div>
+        </div>
+
         <div className="filter">
           <label className="filter__label" htmlFor="a11y--filter-continent">
             Filter on continent:

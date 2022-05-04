@@ -221,6 +221,13 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
           ? a
           : a.continents[0] === props.selectedContinent
       )
+      .filter((a) =>
+        props.searchedName === ""
+          ? a
+          : a.name.common
+              .toLowerCase()
+              .includes(props.searchedName.toLowerCase())
+      )
       .map((country) => TeaserCountry(country, props))}
   </ul>
 );
