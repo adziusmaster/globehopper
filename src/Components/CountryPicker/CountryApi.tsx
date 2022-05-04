@@ -40,6 +40,7 @@ export const fetchSubCountries:CountriesWithSubCountries[] = [
         howManyVisits: 0,
         favourited: false,
         wishList: false,
+        parentCountry: 'GBR'
       },
       {
         continents: 'Europe',
@@ -55,6 +56,7 @@ export const fetchSubCountries:CountriesWithSubCountries[] = [
         howManyVisits: 0,
         favourited: false,
         wishList: false,
+        parentCountry: 'GBR'
       },
       {
         continents: 'Europe',
@@ -70,6 +72,7 @@ export const fetchSubCountries:CountriesWithSubCountries[] = [
         howManyVisits: 0,
         favourited: false,
         wishList: false,
+        parentCountry: 'GBR'
       },
       {
         continents: 'Europe',
@@ -85,6 +88,7 @@ export const fetchSubCountries:CountriesWithSubCountries[] = [
         howManyVisits: 0,
         favourited: false,
         wishList: false,
+        parentCountry: 'GBR'
       }
     ]
   }

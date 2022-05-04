@@ -16,6 +16,7 @@ export type Country = {
   favourited: boolean;
   wishList: boolean;
   subCountries?: Country[];
+  parentCountry?: string;
 };
 
 export type CountryState = {
