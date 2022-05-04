@@ -183,7 +183,7 @@ const TeaserCountry = (
             <div className="teaser__counter">
               {ButtonSpecialNoDivWidget({
                 key: "addAnotherVisit",
-                onClick: () => parentProps.addToVisited(country),
+                onClick: () => null,
                 classNameButton: "teaser__action teaser__plus",
                 aria: `Add another visit to ${country.name.common} to your visited countries list`,
                 Svg: (
@@ -195,7 +195,7 @@ const TeaserCountry = (
 
               {ButtonSpecialNoDivWidget({
                 key: "removeVisit",
-                onClick: () => parentProps.addToVisited(country),
+                onClick: () => null,
                 classNameButton: "teaser__action teaser__minus",
                 aria: `Remove a visit to ${country.name.common} from your visited countries list`,
                 Svg: (

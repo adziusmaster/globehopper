@@ -40,11 +40,7 @@ export const HandleAddToVisited: Fun<Country, Action<AppState>> =
     );
     let updatedNotVisitedCountries = state.NotVisitedCountries;
 
-    console.log(updatedAllCountries);
-
     updatedNotVisitedCountries.splice(indexInNotVisitedCountries, 1);
-
-    console.log(updatedAllCountries);
 
     newState = {
       ...state,

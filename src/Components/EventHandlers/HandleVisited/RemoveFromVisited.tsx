@@ -43,7 +43,8 @@ export const HandleRemoveFromVisited: Fun<Country, Action<AppState>> =
     }
 
     let updatedNotVisitedCountries = state.NotVisitedCountries;
-    updatedNotVisitedCountries.concat(newNotVisitedCountry);
+    updatedNotVisitedCountries =
+      updatedNotVisitedCountries.concat(newNotVisitedCountry);
 
     newState = {
       ...state,
