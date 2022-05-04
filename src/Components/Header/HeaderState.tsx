@@ -7,4 +7,12 @@ export type HeaderProps = {
   onFavorites: () => void;
   onAll: () => void;
   currentRoute: Routes;
+  counts: {
+    allCountries: number;
+    selectedContinent: number;
+    NotVisitedCountries: number;
+    WishlistCountries: number;
+    FavoritedCountries: number;
+    VisitedCountries: number;
+  }
 };
