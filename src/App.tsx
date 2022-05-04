@@ -24,6 +24,7 @@ import { Continent, Country } from "./Components/CountryPicker/CountryState";
 import {
   HandleContinentChange,
   HandleOnClear,
+  HandleOnClearSearch,
   HandleOnSearch,
 } from "./Components/EventHandlers/HandleSelectContinent";
 import { HandleShowModal } from "./Components/EventHandlers/ModalHandlers/ShowModal";
@@ -87,6 +88,7 @@ const App = (): JSX.Element =>
               searchedName: s0.searchedName,
               onChange: (e) => setState((s0) => HandleContinentChange(e)(s0)),
               onClear: () => setState((s0) => HandleOnClear(s0)),
+              onClearSearch: () => setState((s0) => HandleOnClearSearch(s0)),
               onSearch: (e) => setState((s0) => HandleOnSearch(e)(s0)),
               addToVisited: (e) => setState((s0) => HandleAddToVisited(e)(s0)),
               removeFromVisited: (e) =>
