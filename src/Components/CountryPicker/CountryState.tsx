@@ -45,6 +45,7 @@ export type CountrySelectorProps = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClear: () => void;
+  onClearSearch: () => void;
   CountriesLoaded: (allCountries: Country[]) => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;

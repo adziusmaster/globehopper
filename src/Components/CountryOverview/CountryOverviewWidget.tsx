@@ -45,6 +45,7 @@ const CountryOverview = (
           {SortAndFilterWidget({
             onChange: filterProps.onChange,
             onClear: filterProps.onClear,
+            onClearSearch: filterProps.onClearSearch,
             onSearch: filterProps.onSearch,
             selectedContinent: filterProps.selectedContinent,
             searchedName: filterProps.searchedName,

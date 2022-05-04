@@ -79,6 +79,7 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
               {
                 onChange: props.onChange,
                 onClear: props.onClear,
+                onClearSearch: props.onClearSearch,
                 selectedContinent: props.selectedContinent,
                 searchedName: props.searchedName,
                 onSearch: props.onSearch,
