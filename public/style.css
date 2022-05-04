@@ -894,6 +894,10 @@ svg {
   .adding .teaser__footer {
     width: 60px;
   }
+
+  .checked .teaser__footer {
+    width: 180px;
+  }
 }
 
 .teaser__actions,
@@ -903,6 +907,12 @@ svg {
   height: 100%;
   display: flex;
   flex-direction: row;
+}
+
+.checked .teaser__actions,
+.checked .teaser__counter,
+.checked .teaser__extras {
+  width: calc(100% / 3);
 }
 
 @media only screen and (min-width: 640px) {
@@ -915,12 +925,6 @@ svg {
   .adding .teaser__actions {
     width: 100%;
   }
-}
-
-.teaser__counter,
-.teaser__extras {
-  border-left: solid 1px #0E100F;
-  border-left-color: var(--support-border);
 }
 
 @media only screen and (min-width: 640px) {
@@ -975,13 +979,22 @@ svg {
 }
 
 .teaser__info,
+.teaser__add,
+.teaser__heart:not(:last-child),
+.teaser__star,
 .teaser__plus {
   border-right: solid 1px #0E100F;
   border-right-color: var(--support-border);
 }
 
 @media only screen and (min-width: 640px) {
+  .teaser__add,
+  .teaser__heart {
+    border-right: 0;
+  }
+
   .teaser__info,
+  .teaser__star,
   .teaser__plus {
     border-right: 0;
     border-bottom: solid 1px #0E100F;
@@ -1035,9 +1048,15 @@ svg {
   .overlay .teaser__add:after {
     right: 60px;
   }
+
+  .checked .teaser__info:after {
+    right: 180px;
+  }
 }
 
-.starred .teaser__star {
+.starred .teaser__star,
+.checked .teaser__add,
+.favorited .teaser__heart {
   background-color: rgba( 178, 196, 210, 0.3 );
   background-color: var(--support-primary--30);
 }
@@ -1129,7 +1148,7 @@ svg {
   flex-direction: row;
 }
 
-.country__flag {
+.country__flag:empty {
   background-color: #B2C4D2;
   background-color: var(--support-primary);
   border-radius: 3px;
