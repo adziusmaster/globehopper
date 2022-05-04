@@ -8,7 +8,11 @@ export const CountryDetailsModal = (props: ModalProps): JSX.Element => (
       <>
         <div className="modal" id="modal">
           <h2>Country Details Modal Window</h2>
-          <div className="content">Crazy modal content</div>
+          <div className="content">
+            {props.country.name.official}
+            <br></br>
+            {props.country.continents}
+          </div>
           <div className="actions">
             {ButtonSpecialNoDivWidget({
               key: "info",

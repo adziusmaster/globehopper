@@ -1,6 +1,6 @@
 import { ButtonSpecialNoDivWidget } from "../Button/ButtonWidget";
 import SvgWidget from "../SvgWidget/SvgWidget";
-import { CountriesProps, ModalProps } from "./CountryOverviewState";
+import { CountriesProps } from "./CountryOverviewState";
 import * as Icons from "react-bootstrap-icons";
 import { Country } from "../CountryPicker/CountryState";
 import { CountryDetailsModal } from "./CountryDetailsModal";
