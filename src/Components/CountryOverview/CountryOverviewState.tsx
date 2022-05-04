@@ -16,8 +16,7 @@ export type CountryOverviewProps = {
   addToWishList: (country: Country) => void;
   removeFromWishList: (country: Country) => void;
   selectedContinent: Continent;
-  modalVisible: boolean;
-  showModal: () => void;
+  showModal: (country: Country) => void;
 };
 
 export type CountriesProps = {
@@ -30,11 +29,11 @@ export type CountriesProps = {
   removeFromFavourites: (country: Country) => void;
   addToWishList: (country: Country) => void;
   removeFromWishList: (country: Country) => void;
-  modalVisible: boolean;
-  showModal: () => void;
+  showModal: (country: Country) => void;
 };
 
 export type ModalProps = {
-  showModal: () => void;
+  showModal: (country: Country) => void;
   modalVisible: boolean;
+  country: Country;
 };

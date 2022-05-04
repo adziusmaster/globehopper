@@ -15,6 +15,7 @@ export type Country = {
   howManyVisits: number;
   favourited: boolean;
   wishList: boolean;
+  modalVisible: boolean;
 };
 
 export type CountryState = {
@@ -53,6 +54,5 @@ export type CountrySelectorProps = {
   removeFromFavourites: (country: Country) => void;
   addToWishList: (country: Country) => void;
   removeFromWishList: (country: Country) => void;
-  modalVisible: boolean;
-  showModal: () => void;
+  showModal: (country: Country) => void;
 };

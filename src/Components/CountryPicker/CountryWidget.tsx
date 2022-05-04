@@ -29,6 +29,7 @@ const loadCountriesIntoState = (
       howManyVisits: 0,
       favourited: false,
       wishList: false,
+      modalVisible: false,
     };
     allCountries.push(newCountry);
     iterator = iterator + 1;
@@ -75,7 +76,6 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
                 removeFromFavourites: props.removeFromFavourites,
                 addToWishList: props.addToWishList,
                 removeFromWishList: props.removeFromWishList,
-                modalVisible: props.modalVisible,
                 showModal: props.showModal,
               },
               {

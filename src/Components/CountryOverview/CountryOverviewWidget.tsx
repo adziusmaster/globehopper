@@ -2,7 +2,7 @@ import { Country } from "../CountryPicker/CountryState";
 import { SortAndFilterProps } from "../SortAndFilterWidget/SortAndFilterState";
 import SortAndFilterWidget from "../SortAndFilterWidget/SortAndFilterWidget";
 import AllCountries from "./AllCountries";
-import { CountryOverviewProps, ModalProps } from "./CountryOverviewState";
+import { CountryOverviewProps } from "./CountryOverviewState";
 import LoadingCountries from "./LoadingCountries";
 
 const GetCountryOverview = (props: CountryOverviewProps): Country[] => {
@@ -64,7 +64,6 @@ const CountryOverview = (
                 removeFromWishList: props.removeFromWishList,
                 selectedContinent: filterProps.selectedContinent,
                 searchedName: filterProps.searchedName,
-                modalVisible: props.modalVisible,
                 showModal: props.showModal,
               })}
             </>

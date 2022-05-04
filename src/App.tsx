@@ -42,7 +42,6 @@ export type AppState = {
   NotVisitedCountries: Country[];
   FavouritedCountries: Country[];
   WishlistCountries: Country[];
-  modalVisible: boolean;
 };
 
 const App = (): JSX.Element =>
@@ -75,6 +74,7 @@ const App = (): JSX.Element =>
                 VisitedCountries: s0.VisitedCountries.length,
               },
             })}
+
             {CountryWidget({
               CountriesLoaded: (e) =>
                 setState((s0) => HandleLoadedCountries(e)(s0)),
@@ -101,8 +101,7 @@ const App = (): JSX.Element =>
                 setState((s0) => HandleAddToWishList(e)(s0)),
               removeFromWishList: (e) =>
                 setState((s0) => HandleRemoveFromWishList(e)(s0)),
-              modalVisible: s0.modalVisible,
-              showModal: () => setState((s0) => HandleShowModal(s0)),
+              showModal: (e) => setState((s0) => HandleShowModal(e)(s0)),
             })}
           </>
         )}
@@ -121,7 +120,6 @@ const App = (): JSX.Element =>
     WishlistCountries: [],
     FavouritedCountries: [],
     VisitedCountries: [],
-    modalVisible: false,
   }).run((s0) => s0);
 
 export default App;
