@@ -52,4 +52,6 @@ export type CountrySelectorProps = {
   removeFromFavourites: (country: Country) => void;
   addToWishList: (country: Country) => void;
   removeFromWishList: (country: Country) => void;
+  modalVisible: boolean;
+  showModal: () => void;
 };

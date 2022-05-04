@@ -1,13 +1,14 @@
-import { AnchorLinkWidget } from "../AnchorLink/AnchorLinkWidget";
 import { ButtonSpecialNoDivWidget } from "../Button/ButtonWidget";
 import SvgWidget from "../SvgWidget/SvgWidget";
-import { CountriesProps } from "./CountryOverviewState";
+import { CountriesProps, ModalProps } from "./CountryOverviewState";
 import * as Icons from "react-bootstrap-icons";
 import { Country } from "../CountryPicker/CountryState";
+import { CountryDetailsModal } from "./CountryDetailsModal";
 
 const TeaserCountry = (
   country: Country,
-  parentProps: CountriesProps
+  parentProps: CountriesProps,
+  modalProps: ModalProps
 ): JSX.Element => (
   <li className="overview__item" key={`tc-${country.cca3}`}>
     <article
@@ -75,16 +76,20 @@ const TeaserCountry = (
 
         <footer className="teaser__footer">
           <div className="teaser__actions">
-            {AnchorLinkWidget({
+            {ButtonSpecialNoDivWidget({
               key: "info",
-              className: "teaser__action teaser__info",
-              href: "#",
-              text: `More information about ${country.name.common}`,
+              onClick: () => modalProps.showModal,
+              classNameButton: "teaser__action teaser__info",
+              aria: `More information about ${country.name.common}`,
               Svg: (
                 <>
                   <Icons.InfoCircle size={24} color="" />
                 </>
               ),
+            })}
+            {CountryDetailsModal({
+              modalVisible: modalProps.modalVisible,
+              showModal: modalProps.showModal,
             })}
             {country.howManyVisits === 0 ? (
               <>
@@ -212,7 +217,10 @@ const TeaserCountry = (
   </li>
 );
 
-const AllCountries = (props: CountriesProps): JSX.Element => (
+const AllCountries = (
+  props: CountriesProps,
+  modalProps: ModalProps
+): JSX.Element => (
   <ul className="overview__list">
     {props.countries
       .sort((a, b) => a.name.common.localeCompare(b.name.common))
@@ -228,7 +236,7 @@ const AllCountries = (props: CountriesProps): JSX.Element => (
               .toLowerCase()
               .includes(props.searchedName.toLowerCase())
       )
-      .map((country) => TeaserCountry(country, props))}
+      .map((country) => TeaserCountry(country, props, modalProps))}
   </ul>
 );
 

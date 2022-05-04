@@ -15,7 +15,9 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "all",
                 onClick: props.onAll,
-                classNameButton:  `menu__link${props.currentRoute === 'all' ? ' active' : ''}`,
+                classNameButton: `menu__link${
+                  props.currentRoute === "all" ? " active" : ""
+                }`,
                 buttontext: `All (${props.counts.allCountries})`,
               })}
             </li>
@@ -23,7 +25,9 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "visited",
                 onClick: props.onVisited,
-                classNameButton: `menu__link${props.currentRoute === 'visited' ? ' active' : ''}`,
+                classNameButton: `menu__link${
+                  props.currentRoute === "visited" ? " active" : ""
+                }`,
                 buttontext: `Visited (${props.counts.VisitedCountries})`,
               })}
             </li>
@@ -31,7 +35,9 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "not visited",
                 onClick: props.onNotVisited,
-                classNameButton:  `menu__link${props.currentRoute === 'notVisited' ? ' active' : ''}`,
+                classNameButton: `menu__link${
+                  props.currentRoute === "notVisited" ? " active" : ""
+                }`,
                 buttontext: `Not Visited (${props.counts.NotVisitedCountries})`,
               })}
             </li>
@@ -39,7 +45,9 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "wish list",
                 onClick: props.onWishList,
-                classNameButton:  `menu__link${props.currentRoute === 'wishList' ? ' active' : ''}`,
+                classNameButton: `menu__link${
+                  props.currentRoute === "wishList" ? " active" : ""
+                }`,
                 buttontext: `Wish List (${props.counts.WishlistCountries})`,
               })}
             </li>
@@ -47,7 +55,9 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
               {ButtonSpecialWidget({
                 key: "favorites",
                 onClick: props.onFavorites,
-                classNameButton:  `menu__link${props.currentRoute === 'favotites' ? ' active' : ''}`,
+                classNameButton: `menu__link${
+                  props.currentRoute === "favotites" ? " active" : ""
+                }`,
                 buttontext: `Favorites (${props.counts.FavoritedCountries})`,
               })}
             </li>

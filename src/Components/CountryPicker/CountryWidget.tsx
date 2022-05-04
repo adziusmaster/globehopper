@@ -75,6 +75,8 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
                 removeFromFavourites: props.removeFromFavourites,
                 addToWishList: props.addToWishList,
                 removeFromWishList: props.removeFromWishList,
+                modalVisible: props.modalVisible,
+                showModal: props.showModal,
               },
               {
                 onChange: props.onChange,

@@ -26,6 +26,7 @@ import {
   HandleOnClear,
   HandleOnSearch,
 } from "./Components/EventHandlers/HandleSelectContinent";
+import { HandleShowModal } from "./Components/EventHandlers/ModalHandlers/ShowModal";
 
 export type AppState = {
   email: string;
@@ -40,6 +41,7 @@ export type AppState = {
   NotVisitedCountries: Country[];
   FavouritedCountries: Country[];
   WishlistCountries: Country[];
+  modalVisible: boolean;
 };
 
 const App = (): JSX.Element =>
@@ -70,7 +72,7 @@ const App = (): JSX.Element =>
                 WishlistCountries: s0.WishlistCountries.length,
                 FavoritedCountries: s0.FavouritedCountries.length,
                 VisitedCountries: s0.VisitedCountries.length,
-              }
+              },
             })}
             {CountryWidget({
               CountriesLoaded: (e) =>
@@ -97,6 +99,8 @@ const App = (): JSX.Element =>
                 setState((s0) => HandleAddToWishList(e)(s0)),
               removeFromWishList: (e) =>
                 setState((s0) => HandleRemoveFromWishList(e)(s0)),
+              modalVisible: s0.modalVisible,
+              showModal: () => setState((s0) => HandleShowModal(s0)),
             })}
           </>
         )}
@@ -115,6 +119,7 @@ const App = (): JSX.Element =>
     WishlistCountries: [],
     FavouritedCountries: [],
     VisitedCountries: [],
+    modalVisible: false,
   }).run((s0) => s0);
 
 export default App;

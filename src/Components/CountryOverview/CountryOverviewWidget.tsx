@@ -53,17 +53,20 @@ const CountryOverview = (
             <>{LoadingCountries()}</>
           ) : (
             <>
-              {AllCountries({
-                countries: GetCountryOverview(props),
-                addToVisited: props.addToVisited,
-                removeFromVisited: props.removeFromVisited,
-                addToFavourites: props.addToFavourites,
-                removeFromFavourites: props.removeFromFavourites,
-                addToWishList: props.addToWishList,
-                removeFromWishList: props.removeFromWishList,
-                selectedContinent: filterProps.selectedContinent,
-                searchedName: filterProps.searchedName,
-              })}
+              {AllCountries(
+                {
+                  countries: GetCountryOverview(props),
+                  addToVisited: props.addToVisited,
+                  removeFromVisited: props.removeFromVisited,
+                  addToFavourites: props.addToFavourites,
+                  removeFromFavourites: props.removeFromFavourites,
+                  addToWishList: props.addToWishList,
+                  removeFromWishList: props.removeFromWishList,
+                  selectedContinent: filterProps.selectedContinent,
+                  searchedName: filterProps.searchedName,
+                },
+                { modalVisible: props.modalVisible, showModal: props.showModal }
+              )}
             </>
           )}
         </section>
