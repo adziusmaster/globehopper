@@ -63,6 +63,14 @@ const App = (): JSX.Element =>
               onFavorites: () => setState((s0) => Router("favotites")(s0)),
               onAll: () => setState((s0) => Router("all")(s0)),
               currentRoute: s0.currentRoute,
+              counts: {
+                allCountries: s0.allCountries.length,
+                selectedContinent: s0.selectedContinent.length,
+                NotVisitedCountries: s0.NotVisitedCountries.length,
+                WishlistCountries: s0.WishlistCountries.length,
+                FavoritedCountries: s0.FavouritedCountries.length,
+                VisitedCountries: s0.VisitedCountries.length,
+              }
             })}
             {CountryWidget({
               CountriesLoaded: (e) =>

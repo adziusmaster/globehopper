@@ -16,7 +16,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 key: "all",
                 onClick: props.onAll,
                 classNameButton:  `menu__link${props.currentRoute === 'all' ? ' active' : ''}`,
-                buttontext: "All",
+                buttontext: `All (${props.counts.allCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-visited">
@@ -24,7 +24,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 key: "visited",
                 onClick: props.onVisited,
                 classNameButton: `menu__link${props.currentRoute === 'visited' ? ' active' : ''}`,
-                buttontext: "Visited",
+                buttontext: `Visited (${props.counts.VisitedCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-notvisited">
@@ -32,7 +32,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 key: "not visited",
                 onClick: props.onNotVisited,
                 classNameButton:  `menu__link${props.currentRoute === 'notVisited' ? ' active' : ''}`,
-                buttontext: "Not Visited",
+                buttontext: `Not Visited (${props.counts.NotVisitedCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-wishlist">
@@ -40,7 +40,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 key: "wish list",
                 onClick: props.onWishList,
                 classNameButton:  `menu__link${props.currentRoute === 'wishList' ? ' active' : ''}`,
-                buttontext: "Wish List",
+                buttontext: `Wish List (${props.counts.WishlistCountries})`,
               })}
             </li>
             <li className="menu__item" key="mi-favorites">
@@ -48,7 +48,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 key: "favorites",
                 onClick: props.onFavorites,
                 classNameButton:  `menu__link${props.currentRoute === 'favotites' ? ' active' : ''}`,
-                buttontext: "Favorites",
+                buttontext: `Favorites (${props.counts.FavoritedCountries})`,
               })}
             </li>
           </ul>
