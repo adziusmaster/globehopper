@@ -1,26 +1,66 @@
-import { CountriesRouter } from "../EventHandlers/EventHandlers";
+import { Country } from "../CountryPicker/CountryState";
+import { SortAndFilterProps } from "../SortAndFilterWidget/SortAndFilterState";
 import SortAndFilterWidget from "../SortAndFilterWidget/SortAndFilterWidget";
+import AllCountries from "./AllCountries";
 import { CountryOverviewProps } from "./CountryOverviewState";
 import LoadingCountries from "./LoadingCountries";
 
-const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
+const GetCountryOverview = (props: CountryOverviewProps): Country[] => {
+  let countries: Country[] = [];
+
+  switch (props.currentRoute) {
+    case "all":
+      countries = props.allCountries;
+      break;
+
+    case "visited":
+      countries = props.VisitedCountries;
+      break;
+
+    case "notVisited":
+      countries = props.NotVisitedCountries;
+      break;
+
+    case "wishList":
+      countries = props.WishlistCountries;
+      break;
+
+    case "favotites":
+      countries = props.FavoritesCountries;
+      break;
+  }
+
+  return countries;
+};
+
+const CountryOverview = (
+  props: CountryOverviewProps,
+  filterProps: SortAndFilterProps
+): JSX.Element => (
   <>
     <main className="main">
       <div className="main__inner container">
         <section id="a11y--countries" className="overview overview--countries">
           <h2 className="sr-text">Overview</h2>
           {SortAndFilterWidget({
-            onChange: props.onChange,
-            onClear: props.onClear,
-            selectedContinent: props.selectedContinent,
+            onChange: filterProps.onChange,
+            onClear: filterProps.onClear,
+            selectedContinent: filterProps.selectedContinent,
           })}
           {props.kindOfResult === "loading" ? (
-            <>
-              <ul className="overview__list">{LoadingCountries()}</ul>
-            </>
+            <>{LoadingCountries()}</>
           ) : (
             <>
-              <ul className="overview__list">{CountriesRouter(props)}</ul>
+              {AllCountries({
+                countries: GetCountryOverview(props),
+                addToVisited: props.addToVisited,
+                removeFromVisited: props.removeFromVisited,
+                addToFavourites: props.addToFavourites,
+                removeFromFavourites: props.removeFromFavourites,
+                addToWishList: props.addToWishList,
+                removeFromWishList: props.removeFromWishList,
+                selectedContinent: filterProps.selectedContinent,
+              })}
             </>
           )}
         </section>

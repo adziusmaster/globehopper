@@ -25,6 +25,7 @@ const loadCountriesIntoState = (
         svg: countries[iterator].flags.svg,
       },
       name: countries[iterator].name,
+      cca3: countries[iterator].cca3, // Abbrevation
       howManyVisits: 0,
       favourited: false,
       wishList: false,
@@ -58,24 +59,29 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
         }
         return (
           <>
-            {CountryOverview({
-              currentRoute: props.currentRoute,
-              allCountries: props.allCountries,
-              NotVisitedCountries: props.NotVisitedCountries,
-              WishlistCountries: props.WishlistCountries,
-              FavoritesCountries: props.FavoritedCountries,
-              VisitedCountries: props.VisitedCountries,
-              kindOfResult: s0.country.kind,
-              selectedContinent: props.selectedContinent,
-              onChange: props.onChange,
-              onClear: props.onClear,
-              addToVisited: props.addToVisited,
-              removeFromVisited: props.removeFromVisited,
-              addToFavourites: props.addToFavourites,
-              removeFromFavourites: props.removeFromFavourites,
-              addToWishList: props.addToWishList,
-              removeFromWishList: props.removeFromWishList,
-            })}
+            {CountryOverview(
+              {
+                currentRoute: props.currentRoute,
+                allCountries: props.allCountries,
+                NotVisitedCountries: props.NotVisitedCountries,
+                WishlistCountries: props.WishlistCountries,
+                FavoritesCountries: props.FavoritedCountries,
+                VisitedCountries: props.VisitedCountries,
+                kindOfResult: s0.country.kind,
+                selectedContinent: props.selectedContinent,
+                addToVisited: props.addToVisited,
+                removeFromVisited: props.removeFromVisited,
+                addToFavourites: props.addToFavourites,
+                removeFromFavourites: props.removeFromFavourites,
+                addToWishList: props.addToWishList,
+                removeFromWishList: props.removeFromWishList,
+              },
+              {
+                onChange: props.onChange,
+                onClear: props.onClear,
+                selectedContinent: props.selectedContinent,
+              }
+            )}
           </>
         );
       }),

@@ -11,7 +11,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
       <div className="menu">
         <div className="menu__inner container">
           <ul className="menu__list">
-            <li className="menu__item">
+            <li className="menu__item" key="mi-all">
               {ButtonSpecialWidget({
                 key: "all",
                 onClick: props.onAll,
@@ -19,7 +19,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 buttontext: "All",
               })}
             </li>
-            <li className="menu__item">
+            <li className="menu__item" key="mi-visited">
               {ButtonSpecialWidget({
                 key: "visited",
                 onClick: props.onVisited,
@@ -27,7 +27,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 buttontext: "Visited",
               })}
             </li>
-            <li className="menu__item">
+            <li className="menu__item" key="mi-notvisited">
               {ButtonSpecialWidget({
                 key: "not visited",
                 onClick: props.onNotVisited,
@@ -35,7 +35,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 buttontext: "Not Visited",
               })}
             </li>
-            <li className="menu__item">
+            <li className="menu__item" key="mi-wishlist">
               {ButtonSpecialWidget({
                 key: "wish list",
                 onClick: props.onWishList,
@@ -43,7 +43,7 @@ export const HeaderWidget = (props: HeaderProps): JSX.Element => {
                 buttontext: "Wish List",
               })}
             </li>
-            <li className="menu__item">
+            <li className="menu__item" key="mi-favorites">
               {ButtonSpecialWidget({
                 key: "favorites",
                 onClick: props.onFavorites,

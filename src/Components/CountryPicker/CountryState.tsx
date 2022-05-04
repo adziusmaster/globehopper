@@ -6,6 +6,7 @@ export type Country = {
     common: string;
     official: string;
   };
+  cca3: string; // Abbrevation
   continents: Continent;
   flags: {
     png: string;
