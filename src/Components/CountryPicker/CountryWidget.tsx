@@ -32,6 +32,7 @@ const loadCountriesIntoState = (
         svg: countries[iterator].flags.svg,
       },
       name: countries[iterator].name,
+      cca3: countries[iterator].cca3, // Abbrevation
       howManyVisits: 0,
       favourited: false,
       wishList: false,

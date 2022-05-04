@@ -1,5 +1,4 @@
-import { BooleanLiteral } from "typescript";
-import { AsyncState, HttpResult } from "widgets-for-react";
+import { AsyncState } from "widgets-for-react";
 import { Routes } from "../EventHandlers/EventHandlers";
 
 export type Country = {
@@ -7,6 +6,7 @@ export type Country = {
     common: string;
     official: string;
   };
+  cca3: string; // Abbrevation
   continents: Continent;
   flags: {
     png: string;

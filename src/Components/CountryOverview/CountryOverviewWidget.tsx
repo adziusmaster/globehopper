@@ -1,7 +1,36 @@
+import { Country } from "../CountryPicker/CountryState";
 import SortAndFilterWidget from "../SortAndFilterWidget/SortAndFilterWidget";
 import AllCountries from "./AllCountries";
 import { CountryOverviewProps } from "./CountryOverviewState";
 import LoadingCountries from "./LoadingCountries";
+
+const GetCountryOverview = (props: CountryOverviewProps): Country[] => {
+  let countries: Country[] = [];
+
+  switch (props.currentRoute) {
+    case 'all':
+      countries = props.allCountries;
+    break;
+
+    case 'visited':
+      countries = props.VisitedCountries;
+    break;
+
+    case 'notVisited':
+      countries = props.NotVisitedCountries;
+    break;
+
+    case 'wishList':
+      countries = props.WishlistCountries;
+    break;
+
+    case 'favotites':
+      countries = props.FavoritesCountries;
+    break;
+  }
+
+  return countries;
+}
 
 const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
   <>
@@ -12,77 +41,19 @@ const CountryOverview = (props: CountryOverviewProps): JSX.Element => (
           {SortAndFilterWidget({})}
           {props.kindOfResult === "loading" ? (
             <>
-              <ul className="overview__list">{LoadingCountries()}</ul>
+              {LoadingCountries()}
             </>
           ) : (
             <>
-              <ul className="overview__list">
-                {props.currentRoute === "all" && (
-                  <>
-                    {AllCountries({
-                      countries: props.allCountries,
-                      addToVisited: props.addToVisited,
-                      removeFromVisited: props.removeFromVisited,
-                      addToFavourites: props.addToFavourites,
-                      removeFromFavourites: props.removeFromFavourites,
-                      addToWishList: props.addToWishList,
-                      removeFromWishList: props.removeFromWishList,
-                    })}
-                  </>
-                )}
-                {props.currentRoute === "visited" && (
-                  <>
-                    {AllCountries({
-                      countries: props.VisitedCountries,
-                      addToVisited: props.addToVisited,
-                      removeFromVisited: props.removeFromVisited,
-                      addToFavourites: props.addToFavourites,
-                      removeFromFavourites: props.removeFromFavourites,
-                      addToWishList: props.addToWishList,
-                      removeFromWishList: props.removeFromWishList,
-                    })}
-                  </>
-                )}
-                {props.currentRoute === "notVisited" && (
-                  <>
-                    {AllCountries({
-                      countries: props.NotVisitedCountries,
-                      addToVisited: props.addToVisited,
-                      removeFromVisited: props.removeFromVisited,
-                      addToFavourites: props.addToFavourites,
-                      removeFromFavourites: props.removeFromFavourites,
-                      addToWishList: props.addToWishList,
-                      removeFromWishList: props.removeFromWishList,
-                    })}
-                  </>
-                )}
-                {props.currentRoute === "wishList" && (
-                  <>
-                    {AllCountries({
-                      countries: props.WishlistCountries,
-                      addToVisited: props.addToVisited,
-                      removeFromVisited: props.removeFromVisited,
-                      addToFavourites: props.addToFavourites,
-                      removeFromFavourites: props.removeFromFavourites,
-                      addToWishList: props.addToWishList,
-                      removeFromWishList: props.removeFromWishList,
-                    })}
-                  </>
-                )}
-                {props.currentRoute === "favotites" && (
-                  <>
-                    {AllCountries({
-                      countries: props.FavoritesCountries,
-                      addToVisited: props.addToVisited,
-                      removeFromVisited: props.removeFromVisited,
-                      addToFavourites: props.addToFavourites,
-                      removeFromFavourites: props.removeFromFavourites,
-                      addToWishList: props.addToWishList,
-                      removeFromWishList: props.removeFromWishList,
-                    })}
-                  </>
-                )}
-              </ul>
+              {AllCountries({
+                countries: GetCountryOverview(props),
+                addToVisited: props.addToVisited,
+                removeFromVisited: props.removeFromVisited,
+                addToFavourites: props.addToFavourites,
+                removeFromFavourites: props.removeFromFavourites,
+                addToWishList: props.addToWishList,
+                removeFromWishList: props.removeFromWishList,
+              })}
             </>
           )}
         </section>
