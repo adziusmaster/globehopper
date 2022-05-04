@@ -21,3 +21,24 @@ export const HandleOnClear: Action<AppState> = (state: AppState) => {
 
   return newState;
 };
+
+export const HandleOnClearSearch: Action<AppState> = (state: AppState) => {
+  let newState: AppState = {
+    ...state,
+    searchedName: '',
+  };
+
+  return newState;
+};
+
+export const HandleOnSearch: Fun<
+  React.ChangeEvent<HTMLInputElement>,
+  Action<AppState>
+> = (event: React.ChangeEvent<HTMLInputElement>) => (state: AppState) => {
+  let newState: AppState = {
+    ...state,
+    searchedName: event.currentTarget.value,
+  };
+
+  return newState;
+};

@@ -21,6 +21,7 @@ export type CountryOverviewProps = {
 export type CountriesProps = {
   countries: Country[];
   selectedContinent: Continent;
+  searchedName: string;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;

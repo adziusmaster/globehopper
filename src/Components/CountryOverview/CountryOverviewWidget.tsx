@@ -45,7 +45,10 @@ const CountryOverview = (
           {SortAndFilterWidget({
             onChange: filterProps.onChange,
             onClear: filterProps.onClear,
+            onClearSearch: filterProps.onClearSearch,
+            onSearch: filterProps.onSearch,
             selectedContinent: filterProps.selectedContinent,
+            searchedName: filterProps.searchedName,
           })}
           {props.kindOfResult === "loading" ? (
             <>{LoadingCountries()}</>
@@ -60,6 +63,7 @@ const CountryOverview = (
                 addToWishList: props.addToWishList,
                 removeFromWishList: props.removeFromWishList,
                 selectedContinent: filterProps.selectedContinent,
+                searchedName: filterProps.searchedName,
               })}
             </>
           )}
