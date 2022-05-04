@@ -16,3 +16,76 @@ export const fetchCountries = async (): Promise<HttpResult<Country[]>> => {
     return { kind: "failed", status: 500 };
   }
 };
+
+export type CountriesWithSubCountries = {
+  country: string,
+  subCountries: Country[]
+}
+
+export const fetchSubCountries:CountriesWithSubCountries[] = [
+  {
+    country: 'GBR',
+    subCountries: [
+      {
+        continents: 'Europe',
+        flags: {
+          png: '',
+          svg: '',
+        },
+        name: {
+          common: 'Engeland',
+          official: 'Engeland'
+        },
+        cca3: 'GBR-ENG', // Abbrevation
+        howManyVisits: 0,
+        favourited: false,
+        wishList: false,
+      },
+      {
+        continents: 'Europe',
+        flags: {
+          png: '',
+          svg: '',
+        },
+        name: {
+          common: 'Northern Ireland',
+          official: 'Northern Ireland'
+        },
+        cca3: 'GBR-NIR', // Abbrevation
+        howManyVisits: 0,
+        favourited: false,
+        wishList: false,
+      },
+      {
+        continents: 'Europe',
+        flags: {
+          png: '',
+          svg: '',
+        },
+        name: {
+          common: 'Scotland',
+          official: 'Scotland'
+        },
+        cca3: 'GBR-SCO', // Abbrevation
+        howManyVisits: 0,
+        favourited: false,
+        wishList: false,
+      },
+      {
+        continents: 'Europe',
+        flags: {
+          png: '',
+          svg: '',
+        },
+        name: {
+          common: 'Wales',
+          official: 'Wales'
+        },
+        cca3: 'GBR-WAL', // Abbrevation
+        howManyVisits: 0,
+        favourited: false,
+        wishList: false,
+      }
+    ]
+  }
+]

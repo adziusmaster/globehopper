@@ -15,6 +15,7 @@ export type Country = {
   howManyVisits: number;
   favourited: boolean;
   wishList: boolean;
+  subCountries?: Country[];
 };
 
 export type CountryState = {
@@ -25,12 +26,12 @@ export type Continent = string;
 export const allContinents: Continent[] = [
   "All",
   "Africa",
+  "Antarctica",
   "Asia",
   "Europe",
-  "South America",
   "North America",
   "Oceania",
-  "Antarctica",
+  "South America",
 ];
 
 export type CountrySelectorProps = {

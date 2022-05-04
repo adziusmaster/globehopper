@@ -7,7 +7,7 @@ import {
   loadingAsyncState,
 } from "widgets-for-react";
 import CountryOverview from "../CountryOverview/CountryOverviewWidget";
-import { fetchCountries } from "./CountryApi";
+import { fetchCountries, fetchSubCountries } from "./CountryApi";
 import { Country, CountrySelectorProps, CountryState } from "./CountryState";
 
 const loadCountriesIntoState = (
@@ -17,7 +17,10 @@ const loadCountriesIntoState = (
   let allCountries: Country[] = [];
   let newCountry: Country;
   let iterator = 0;
+  
   while (iterator < countries.length) {
+    let subCountries = fetchSubCountries[fetchSubCountries.findIndex(country => country.country === countries[iterator].cca3)]
+
     newCountry = {
       continents: countries[iterator].continents,
       flags: {
@@ -29,6 +32,7 @@ const loadCountriesIntoState = (
       howManyVisits: 0,
       favourited: false,
       wishList: false,
+      subCountries: subCountries && subCountries.subCountries ? subCountries.subCountries : undefined
     };
     allCountries.push(newCountry);
     iterator = iterator + 1;

@@ -425,6 +425,13 @@ svg {
 
 .overview__sublist {
   margin-bottom: 40px;
+  padding-left: 60px;
+}
+
+@media only screen and (min-width: 640px) {
+  .overview__sublist {
+    padding-left: 100px;
+  }
 }
 
 .overview__subitem {
@@ -711,6 +718,10 @@ svg {
   position: relative;
 }
 
+.teaser--subcountry .teaser__inner {
+  background-color: #FAFAFA;
+}
+
 @media only screen and (min-width: 640px) {
   .teaser__inner {
     flex-direction: row;
@@ -739,6 +750,11 @@ svg {
 .teaser__header {
   padding: 10px 10px 10px 60px;
   flex-grow: 1;
+}
+
+.teaser--subcountry .teaser__header {
+  align-items: center;
+  display: flex;
 }
 
 .trip-adding .teaser__header,
@@ -963,17 +979,17 @@ svg {
   color: var(--support-secondary);
 }
 
-.teaser__icon {
+.teaser__action svg {
   fill: #3C9F8A;
   fill: var(--primary-light);
 }
 
-.teaser__action:disabled .teaser__icon {
-  fill: rgba(0,0,0,0.2);
+.teaser__action:disabled svg {
+  fill: rgba(0,0,0,0.1);
 }
 
-.teaser__action:not(:disabled):hover .teaser__icon,
-.teaser__action:not(:disabled):focus .teaser__icon {
+.teaser__action:not(:disabled):hover svg,
+.teaser__action:not(:disabled):focus svg {
   fill: #F6F6F6;
   fill: var(--support-secondary);
 }
