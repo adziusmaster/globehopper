@@ -33,6 +33,7 @@ export type CountriesProps = {
 };
 
 export type ModalProps = {
+  id: string,
   showModal: (country: Country) => void;
   modalVisible: boolean;
   country: Country;

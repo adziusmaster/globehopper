@@ -10,11 +10,6 @@ const TeaserCountry = (
   parentProps: CountriesProps
 ): JSX.Element => (
   <>
-    {CountryDetailsModal({
-      modalVisible: country.modalVisible,
-      showModal: parentProps.showModal,
-      country: country,
-    })}
     <li className="overview__item" key={`tc-${country.cca3}`}>
       <article
         className={`teaser teaser--country${
@@ -216,6 +211,13 @@ const TeaserCountry = (
         </div>
       </article>
     </li>
+
+    {CountryDetailsModal({
+      id: `tm-${country.cca3}`,
+      modalVisible: country.modalVisible,
+      showModal: parentProps.showModal,
+      country: country,
+    })}
   </>
 );
 

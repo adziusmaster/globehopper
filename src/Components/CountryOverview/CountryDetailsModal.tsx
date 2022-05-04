@@ -6,26 +6,38 @@ export const CountryDetailsModal = (props: ModalProps): JSX.Element => (
   <>
     {props.modalVisible ? (
       <>
-        <div className="modal" id="modal">
-          <h2>Country Details Modal Window</h2>
-          <div className="content">
-            {props.country.name.official}
-            <br></br>
-            {props.country.continents}
+        <div className="modal" id={props.id} aria-hidden="false">
+          <div className="modal__outer">
+            <div className="modal__inner">
+              <h2 className="modal__title">{props.country.name.common}</h2>
+
+              <h3 className="modal__subtitle">Country Details:</h3>
+              <div className="modal__content">
+                <dl className="modal__list">
+                  <dt className="modal__label">Official name:</dt>
+                  <dd className="modal__value">{props.country.name.official}</dd>
+
+                  <dt className="modal__label">Continent:</dt>
+                  <dd className="modal__value">{props.country.continents}</dd>
+                </dl>
+              </div>
+
+              <div className="modal__action">
+                {ButtonSpecialNoDivWidget({
+                  key: "close",
+                  onClick: () => props.showModal(props.country),
+                  classNameButton: "modal__icon",
+                  aria: `Close information from ${props.country.name.common}`,
+                  label: (
+                    <>
+                      <Icons.X size={24} color="" />
+                    </>
+                  ),
+                })}
+              </div>
+            </div>
           </div>
-          <div className="actions">
-            {ButtonSpecialNoDivWidget({
-              key: "info",
-              onClick: () => props.showModal(props.country),
-              classNameButton: "teaser__action teaser__info",
-              aria: `More information about ${props.country.name.common}`,
-              Svg: (
-                <>
-                  <Icons.X size={24} color="" />
-                </>
-              ),
-            })}
-          </div>
+          <div className="modal__bg" aria-hidden="true" onClick={() => props.showModal(props.country)} />
         </div>
       </>
     ) : (
