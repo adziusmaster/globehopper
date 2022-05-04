@@ -2,7 +2,7 @@ import { Country } from "../CountryPicker/CountryState";
 import { SortAndFilterProps } from "../SortAndFilterWidget/SortAndFilterState";
 import SortAndFilterWidget from "../SortAndFilterWidget/SortAndFilterWidget";
 import AllCountries from "./AllCountries";
-import { CountryOverviewProps } from "./CountryOverviewState";
+import { CountryOverviewProps, ModalProps } from "./CountryOverviewState";
 import LoadingCountries from "./LoadingCountries";
 
 const GetCountryOverview = (props: CountryOverviewProps): Country[] => {
@@ -54,20 +54,19 @@ const CountryOverview = (
             <>{LoadingCountries()}</>
           ) : (
             <>
-              {AllCountries(
-                {
-                  countries: GetCountryOverview(props),
-                  addToVisited: props.addToVisited,
-                  removeFromVisited: props.removeFromVisited,
-                  addToFavourites: props.addToFavourites,
-                  removeFromFavourites: props.removeFromFavourites,
-                  addToWishList: props.addToWishList,
-                  removeFromWishList: props.removeFromWishList,
-                  selectedContinent: filterProps.selectedContinent,
-                  searchedName: filterProps.searchedName,
-                },
-                { modalVisible: props.modalVisible, showModal: props.showModal }
-              )}
+              {AllCountries({
+                countries: GetCountryOverview(props),
+                addToVisited: props.addToVisited,
+                removeFromVisited: props.removeFromVisited,
+                addToFavourites: props.addToFavourites,
+                removeFromFavourites: props.removeFromFavourites,
+                addToWishList: props.addToWishList,
+                removeFromWishList: props.removeFromWishList,
+                selectedContinent: filterProps.selectedContinent,
+                searchedName: filterProps.searchedName,
+                modalVisible: props.modalVisible,
+                showModal: props.showModal,
+              })}
             </>
           )}
         </section>

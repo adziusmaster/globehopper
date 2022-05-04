@@ -9,15 +9,15 @@ export type CountryOverviewProps = {
   FavoritesCountries: Country[];
   VisitedCountries: Country[];
   kindOfResult: string;
-  selectedContinent: Continent;
-  modalVisible: boolean;
-  showModal: () => void;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;
   removeFromFavourites: (country: Country) => void;
   addToWishList: (country: Country) => void;
   removeFromWishList: (country: Country) => void;
+  selectedContinent: Continent;
+  modalVisible: boolean;
+  showModal: () => void;
 };
 
 export type CountriesProps = {
@@ -30,6 +30,8 @@ export type CountriesProps = {
   removeFromFavourites: (country: Country) => void;
   addToWishList: (country: Country) => void;
   removeFromWishList: (country: Country) => void;
+  modalVisible: boolean;
+  showModal: () => void;
 };
 
 export type ModalProps = {
