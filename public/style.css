@@ -643,11 +643,6 @@ input[type="search"]::-webkit-search-results-decoration {
   flex-grow: 1;
 }
 
-.teaser--subcountry .teaser__header {
-  align-items: center;
-  display: flex;
-}
-
 .trip-adding .teaser__header,
 .overlay .teaser__header {
   padding: 10px;
@@ -1041,6 +1036,10 @@ input[type="search"]::-webkit-search-results-decoration {
 .meta__item {
   display: inline-block;
   vertical-align: middle;
+}
+
+.meta__item:not(:last-child) {
+  margin-right: 5px;
 }
 
 .meta__item.date {

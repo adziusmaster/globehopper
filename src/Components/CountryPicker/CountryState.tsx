@@ -1,7 +1,7 @@
 import { AsyncState } from "widgets-for-react";
 import { Routes } from "../EventHandlers/EventHandlers";
 
-export type Country = {
+export type CountryBase = {
   name: {
     common: string;
     official: string;
@@ -11,13 +11,34 @@ export type Country = {
   flags: {
     png: string;
     svg: string;
-  };
+  }
+}
+
+export type Country = CountryBase & {
   howManyVisits: number;
   favourited: boolean;
   wishList: boolean;
-  subCountries?: Country[];
-  parentCountry?: string;
+  parentCountry?: ParentCountry;
+  governedBy?: string;
 };
+
+export type ParentCountry = CountryBase
+
+export type SubCountries = {
+  country: string,
+  subCountries: Country[]
+}
+
+export type SplitCountries = {
+  country: string,
+  splitCountries: CountryBase[]
+}
+
+export type GovernedCountry = {
+  country: string,
+  parentCountry: string;
+  description: string;
+}
 
 export type CountryState = {
   country: AsyncState<Country[]>;
