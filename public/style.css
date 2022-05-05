@@ -426,6 +426,13 @@ svg {
 
 .overview__sublist {
   margin-bottom: 40px;
+  padding-left: 60px;
+}
+
+@media only screen and (min-width: 640px) {
+  .overview__sublist {
+    padding-left: 100px;
+  }
 }
 
 .overview__subitem {
@@ -858,17 +865,17 @@ input[type="search"]::-webkit-search-results-decoration {
   color: var(--support-secondary);
 }
 
-.teaser__icon {
+.teaser__action svg {
   fill: #3C9F8A;
   fill: var(--primary-light);
 }
 
-.teaser__action:disabled .teaser__icon {
-  fill: rgba(0,0,0,0.2);
+.teaser__action:disabled svg {
+  fill: rgba(0,0,0,0.1);
 }
 
-.teaser__action:not(:disabled):hover .teaser__icon,
-.teaser__action:not(:disabled):focus .teaser__icon {
+.teaser__action:not(:disabled):hover svg,
+.teaser__action:not(:disabled):focus svg {
   fill: #F6F6F6;
   fill: var(--support-secondary);
 }
@@ -1029,6 +1036,10 @@ input[type="search"]::-webkit-search-results-decoration {
 .meta__item {
   display: inline-block;
   vertical-align: middle;
+}
+
+.meta__item:not(:last-child) {
+  margin-right: 5px;
 }
 
 .meta__item.date {

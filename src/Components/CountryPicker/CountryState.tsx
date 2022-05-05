@@ -1,22 +1,45 @@
 import { AsyncState } from "widgets-for-react";
 import { Routes } from "../EventHandlers/EventHandlers";
 
-export type Country = {
+export type CountryBase = {
   name: {
     common: string;
     official: string;
   };
   cca3: string; // Abbrevation
-  continents: Continent;
+  continents: Continent[];
   flags: {
     png: string;
     svg: string;
-  };
+  }
+}
+
+export type Country = CountryBase & {
   howManyVisits: number;
   favourited: boolean;
   wishList: boolean;
   modalVisible: boolean;
+  parentCountry?: ParentCountry;
+  governedBy?: string;
 };
+
+export type ParentCountry = CountryBase
+
+export type SubCountries = {
+  country: string,
+  subCountries: Country[]
+}
+
+export type SplitCountries = {
+  country: string,
+  splitCountries: CountryBase[]
+}
+
+export type GovernedCountry = {
+  country: string,
+  parentCountry: string;
+  description: string;
+}
 
 export type CountryState = {
   country: AsyncState<Country[]>;
@@ -26,12 +49,12 @@ export type Continent = string;
 export const allContinents: Continent[] = [
   "All",
   "Africa",
+  "Antarctica",
   "Asia",
   "Europe",
-  "South America",
   "North America",
   "Oceania",
-  "Antarctica",
+  "South America",
 ];
 
 export type CountrySelectorProps = {

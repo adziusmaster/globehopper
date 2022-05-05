@@ -7,33 +7,111 @@ import {
   loadingAsyncState,
 } from "widgets-for-react";
 import CountryOverview from "../CountryOverview/CountryOverviewWidget";
-import { fetchCountries } from "./CountryApi";
-import { Country, CountrySelectorProps, CountryState } from "./CountryState";
+import { fetchCountries, fetchGovernedCountries, fetchSplitCountries, fetchSubCountries } from "./CountryApi";
+import { Country, CountryBase, CountrySelectorProps, CountryState, GovernedCountry, ParentCountry, SplitCountries } from "./CountryState";
+
+
+const populateCountries = (
+  country: CountryBase,
+  countries: Country[],
+  parentCountry?: ParentCountry,
+) => {
+  let newCountry: Country = {
+    continents: country.continents,
+    flags: {
+      png: country.flags.png,
+      svg: country.flags.svg,
+    },
+    name: country.name,
+    cca3: country.cca3, // Abbrevation
+    howManyVisits: 0,
+    favourited: false,
+    wishList: false,
+    modalVisible: false,
+    parentCountry: parentCountry ? {
+      continents: parentCountry.continents,
+      flags: {
+        png: parentCountry.flags.png,
+        svg: parentCountry.flags.svg,
+      },
+      name: parentCountry.name,
+      cca3: parentCountry.cca3, // Abbrevation
+    } : undefined
+  };
+
+  countries.push(newCountry);
+}
 
 const loadCountriesIntoState = (
   countries: Country[],
   countryLoader: (c: Country[]) => void
 ) => {
   let allCountries: Country[] = [];
-  let newCountry: Country;
+  let parentCountries: Country[] = [];
   let iterator = 0;
+  
   while (iterator < countries.length) {
-    newCountry = {
-      continents: countries[iterator].continents,
-      flags: {
-        png: countries[iterator].flags.png,
-        svg: countries[iterator].flags.svg,
-      },
-      name: countries[iterator].name,
-      cca3: countries[iterator].cca3, // Abbrevation
-      howManyVisits: 0,
-      favourited: false,
-      wishList: false,
-      modalVisible: false,
-    };
-    allCountries.push(newCountry);
+    let isParentCountry: boolean = fetchSubCountries.findIndex(country => country.country === countries[iterator].cca3) !== -1 ? true : false;
+
+    if(isParentCountry === true) {
+      populateCountries(countries[iterator], parentCountries );
+
+      const subCountries:Country[] = fetchSubCountries[fetchSubCountries.findIndex(country => country.country === countries[iterator].cca3)].subCountries;
+      subCountries.forEach((subCountry) => {
+        populateCountries(subCountry, allCountries, countries[iterator]);
+      })
+    } else {
+      populateCountries(countries[iterator], allCountries );
+    }
+    
     iterator = iterator + 1;
   }
+
+  // SPLIT countries in existing allCountries array
+  allCountries.forEach((country) => {
+    let isSplitCountry: boolean = fetchSplitCountries.findIndex(gc => gc.country === country.cca3) !== -1 ? true : false;
+
+    if(isSplitCountry === true) {
+      const splitCountry:SplitCountries = fetchSplitCountries[fetchSplitCountries.findIndex(gc => gc.country === country.cca3)];
+      let parentCountry:Country = country;
+
+      populateCountries(parentCountry, parentCountries );
+
+      splitCountry.splitCountries.forEach((splitCountry) => {
+        populateCountries(splitCountry, allCountries, parentCountry);
+      });
+
+      allCountries.splice(allCountries.findIndex(ac => ac.cca3 === parentCountry.cca3), 1);
+    }
+  });
+
+  // ADD extra information to existing allCountries array
+  allCountries.forEach((country) => {
+    let isGovernedCountry: boolean = fetchGovernedCountries.findIndex(gc => gc.country === country.cca3) !== -1 ? true : false;
+
+    if(isGovernedCountry === true) {
+      const governedCountry:GovernedCountry = fetchGovernedCountries[fetchGovernedCountries.findIndex(gc => gc.country === country.cca3)];
+      let parentCountry:Country = allCountries[allCountries.findIndex(c => c.cca3 === governedCountry.parentCountry)];
+
+      if(parentCountry == null) {
+        parentCountry = parentCountries[parentCountries.findIndex(c => c.cca3 === governedCountry.parentCountry)];
+      }
+
+      if(parentCountry != null) {
+        country.parentCountry = {
+          continents: parentCountry.continents,
+          flags: {
+            png: parentCountry.flags.png,
+            svg: parentCountry.flags.svg,
+          },
+          name: parentCountry.name,
+          cca3: parentCountry.cca3, // Abbrevation
+        }
+        country.governedBy = governedCountry.description
+      }
+    }
+  });
+
   return countryLoader(allCountries);
 };
 
