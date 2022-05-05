@@ -17,7 +17,7 @@ const populateCountries = (
   parentCountry?: ParentCountry,
 ) => {
   let newCountry: Country = {
-    continents: parentCountry ? country.continents : country.continents[0],
+    continents: country.continents,
     flags: {
       png: country.flags.png,
       svg: country.flags.svg,
@@ -28,7 +28,7 @@ const populateCountries = (
     favourited: false,
     wishList: false,
     parentCountry: parentCountry ? {
-      continents: parentCountry.continents[0],
+      continents: parentCountry.continents,
       flags: {
         png: parentCountry.flags.png,
         svg: parentCountry.flags.svg,
@@ -98,7 +98,7 @@ const loadCountriesIntoState = (
 
       if(parentCountry != null) {
         country.parentCountry = {
-          continents: parentCountry.continents[0],
+          continents: parentCountry.continents,
           flags: {
             png: parentCountry.flags.png,
             svg: parentCountry.flags.svg,

@@ -23,10 +23,10 @@ export const fetchSubCountries:SubCountries[] = [
     country: 'GBR',
     subCountries: [
       {
-        continents: 'Europe',
+        continents: ['Europe'],
         flags: {
           png: '',
-          svg: '',
+          svg: 'https://flagcdn.com/gb-eng.svg',
         },
         name: {
           common: 'England',
@@ -38,10 +38,10 @@ export const fetchSubCountries:SubCountries[] = [
         wishList: false
       },
       {
-        continents: 'Europe',
+        continents: ['Europe'],
         flags: {
           png: '',
-          svg: '',
+          svg: 'https://flagcdn.com/gb-nir.svg',
         },
         name: {
           common: 'Northern Ireland',
@@ -53,10 +53,10 @@ export const fetchSubCountries:SubCountries[] = [
         wishList: false
       },
       {
-        continents: 'Europe',
+        continents: ['Europe'],
         flags: {
           png: '',
-          svg: '',
+          svg: 'https://flagcdn.com/gb-sct.svg',
         },
         name: {
           common: 'Scotland',
@@ -68,10 +68,10 @@ export const fetchSubCountries:SubCountries[] = [
         wishList: false
       },
       {
-        continents: 'Europe',
+        continents: ['Europe'],
         flags: {
           png: '',
-          svg: '',
+          svg: 'https://flagcdn.com/gb-wls.svg',
         },
         name: {
           common: 'Wales',
@@ -92,7 +92,7 @@ export const fetchSplitCountries:SplitCountries[] = [
     country: 'SJM',
     splitCountries: [
       {
-        continents: 'Europe',
+        continents: ['Europe'],
         flags: {
           png: '',
           svg: 'https://flagcdn.com/no.svg',
@@ -104,7 +104,7 @@ export const fetchSplitCountries:SplitCountries[] = [
         cca3: 'SJM-SVA', // Abbrevation
       },
       {
-        continents: 'Europe',
+        continents: ['Europe'],
         flags: {
           png: '',
           svg: 'https://flagcdn.com/no.svg',

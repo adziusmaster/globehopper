@@ -57,7 +57,7 @@ const TeaserCountry = (
                   </div>
                 </div>
               )}
-              <div className="meta__item continent">{country.continents}</div>
+              <div className="meta__item continent">{country.continents[0]}</div>
             </div>
           </header>
 
@@ -240,7 +240,7 @@ const AllCountries = (props: CountriesProps): JSX.Element => {
     .filter((a) =>
       props.selectedContinent === "All"
         ? a
-        : a.continents === props.selectedContinent
+        : a.continents[0] === props.selectedContinent
     )
     .filter((a) =>
       props.searchedName === ""

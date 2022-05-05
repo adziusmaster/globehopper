@@ -7,7 +7,7 @@ export type CountryBase = {
     official: string;
   };
   cca3: string; // Abbrevation
-  continents: Continent;
+  continents: Continent[];
   flags: {
     png: string;
     svg: string;
