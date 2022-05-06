@@ -56,3 +56,42 @@ export const HandleRemoveFromVisited: Fun<Country, Action<AppState>> =
     };
     return newState;
   };
+
+export const HandleRemoveCountFromVisited: Fun<Country, Action<AppState>> =
+  (country: Country) => (state: AppState) => {
+    let newState: AppState = { ...state };
+
+    let updatedAllCountries = state.allCountries;
+    let allCountryIndex = updatedAllCountries.findIndex((ac => ac.cca3 === country.cca3));
+    let newAmountOfVisits = (updatedAllCountries[allCountryIndex].howManyVisits - 1);
+    updatedAllCountries[allCountryIndex].howManyVisits = newAmountOfVisits;
+
+    let updatedFavouritedCountries = state.FavouritedCountries;
+    let favouritedCountryIndex = updatedFavouritedCountries.findIndex((fc => fc.cca3 === country.cca3));
+    if(favouritedCountryIndex !== -1) {
+      updatedFavouritedCountries[favouritedCountryIndex].howManyVisits = newAmountOfVisits;
+    }
+
+    let updatedWishListCountries = state.WishlistCountries;
+    let wishlistCountryIndex = updatedWishListCountries.findIndex((wc => wc.cca3 === country.cca3));
+    if(wishlistCountryIndex !== -1) {
+      updatedWishListCountries[wishlistCountryIndex].howManyVisits = newAmountOfVisits;
+    }
+
+    let updatedVisitedCountries = state.VisitedCountries;
+    let visitedCountryIndex = updatedVisitedCountries.findIndex((vc => vc.cca3 === country.cca3));
+    if(visitedCountryIndex !== -1) {
+      updatedVisitedCountries[visitedCountryIndex].howManyVisits = newAmountOfVisits;
+    }
+
+    newState = {
+      ...state,
+      allCountries: updatedAllCountries,
+      FavouritedCountries: updatedFavouritedCountries,
+      WishlistCountries: updatedWishListCountries,
+      VisitedCountries: updatedVisitedCountries,
+    };
+
+    return newState;
+  };
+  

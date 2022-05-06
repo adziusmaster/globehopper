@@ -170,6 +170,8 @@ const CountryWidget = (props: CountrySelectorProps): JSX.Element =>
                 selectedContinent: props.selectedContinent,
                 addToVisited: props.addToVisited,
                 removeFromVisited: props.removeFromVisited,
+                addCountToVisited: props.addCountToVisited,
+                removeCountFromVisited: props.removeCountFromVisited,
                 addToFavourites: props.addToFavourites,
                 removeFromFavourites: props.removeFromFavourites,
                 addToWishList: props.addToWishList,

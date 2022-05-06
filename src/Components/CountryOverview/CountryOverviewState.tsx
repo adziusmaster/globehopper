@@ -11,6 +11,8 @@ export type CountryOverviewProps = {
   kindOfResult: string;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
+  addCountToVisited: (country: Country) => void;
+  removeCountFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;
   removeFromFavourites: (country: Country) => void;
   addToWishList: (country: Country) => void;
@@ -25,6 +27,8 @@ export type CountriesProps = {
   searchedName: string;
   addToVisited: (country: Country) => void;
   removeFromVisited: (country: Country) => void;
+  addCountToVisited: (country: Country) => void;
+  removeCountFromVisited: (country: Country) => void;
   addToFavourites: (country: Country) => void;
   removeFromFavourites: (country: Country) => void;
   addToWishList: (country: Country) => void;

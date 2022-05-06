@@ -58,6 +58,8 @@ const CountryOverview = (
                 countries: GetCountryOverview(props),
                 addToVisited: props.addToVisited,
                 removeFromVisited: props.removeFromVisited,
+                addCountToVisited: props.addCountToVisited,
+                removeCountFromVisited: props.removeCountFromVisited,
                 addToFavourites: props.addToFavourites,
                 removeFromFavourites: props.removeFromFavourites,
                 addToWishList: props.addToWishList,

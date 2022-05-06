@@ -11,8 +11,8 @@ import {
 } from "./Components/EventHandlers/EventHandlers";
 import { HandleAddToFavourites } from "./Components/EventHandlers/HandleFavourited/AddToFavourited";
 import { HandleRemoveFromFavourited } from "./Components/EventHandlers/HandleFavourited/RemoveFromFavourited";
-import { HandleAddToVisited } from "./Components/EventHandlers/HandleVisited/AddToVisited";
-import { HandleRemoveFromVisited } from "./Components/EventHandlers/HandleVisited/RemoveFromVisited";
+import { HandleAddCountToVisited, HandleAddToVisited } from "./Components/EventHandlers/HandleVisited/AddToVisited";
+import { HandleRemoveCountFromVisited, HandleRemoveFromVisited } from "./Components/EventHandlers/HandleVisited/RemoveFromVisited";
 import { HandleAddToWishList } from "./Components/EventHandlers/HandleWishList/AddToWishList";
 import { HandleRemoveFromWishList } from "./Components/EventHandlers/HandleWishList/RemoveFromWishList";
 import {
@@ -93,6 +93,9 @@ const App = (): JSX.Element =>
               addToVisited: (e) => setState((s0) => HandleAddToVisited(e)(s0)),
               removeFromVisited: (e) =>
                 setState((s0) => HandleRemoveFromVisited(e)(s0)),
+              addCountToVisited: (e) => setState((s0) => HandleAddCountToVisited(e)(s0)),
+              removeCountFromVisited: (e) =>
+                  setState((s0) => HandleRemoveCountFromVisited(e)(s0)),
               addToFavourites: (e) =>
                 setState((s0) => HandleAddToFavourites(e)(s0)),
               removeFromFavourites: (e) =>

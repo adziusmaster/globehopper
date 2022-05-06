@@ -211,7 +211,7 @@ const TeaserCountry = (
             <div className="teaser__counter">
               {ButtonSpecialNoDivWidget({
                 key: "addAnotherVisit",
-                onClick: () => null,
+                onClick: () => parentProps.addCountToVisited(country),
                 classNameButton: "teaser__action teaser__plus",
                 aria: `Add another visit to ${country.name.common} to your visited countries list`,
                 label: (
@@ -223,7 +223,7 @@ const TeaserCountry = (
 
               {ButtonSpecialNoDivWidget({
                 key: "removeVisit",
-                onClick: () => null,
+                onClick: () => country.howManyVisits === 1 ? parentProps.removeFromVisited(country) : parentProps.removeCountFromVisited(country),
                 classNameButton: "teaser__action teaser__minus",
                 aria: `Remove a visit to ${country.name.common} from your visited countries list`,
                 label: (
