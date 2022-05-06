@@ -34,6 +34,11 @@ const TeaserCountry = (
             </div>
 
             <div className="meta">
+              <div className="meta__item continent">{country.continents[0]}</div>
+            </div>
+
+            {(country.parentCountry !== undefined || country.governingCountry !== undefined) && (
+              <div className="meta">
               {country.parentCountry !== undefined && (
                 <div className="meta__item">
                   <div className="country country--compact">
@@ -49,17 +54,35 @@ const TeaserCountry = (
                       )}
                     </div>
                     <div className="country__name">
-                      {country.governedBy
-                        ? country.governedBy.endsWith(' of')
-                          ? `${country.governedBy} ${country.parentCountry.name.common}`
-                          : country.governedBy
-                        : country.parentCountry.name.common
-                      },</div>
+                      {country.parentCountry.name.common}{country.governingCountry !== undefined ? ', ' : ''}
+                    </div>
                   </div>
                 </div>
               )}
-              <div className="meta__item continent">{country.continents[0]}</div>
-            </div>
+            
+              {country.governingCountry !== undefined && (
+                <div className="meta__item">
+                  <div className="country country--compact">
+                    <div className="country__flag">
+                      {country.governingCountry.flags.svg &&  (
+                        <img
+                          src={country.governingCountry.flags.svg}
+                          loading="lazy"
+                          alt=""
+                          width="24"
+                          height="16"
+                        />
+                      )}
+                    </div>
+                    <div className="country__name">
+                      {country.governedBy && country.governedBy.endsWith(' of')
+                        ? `${country.governedBy} ${country.governingCountry.name.common}`
+                        : country.governedBy}</div>
+                  </div>
+                </div>
+              )}
+              </div>
+            )}
           </header>
 
           {country.howManyVisits === 0 ? (

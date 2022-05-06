@@ -20,6 +20,7 @@ export type Country = CountryBase & {
   wishList: boolean;
   modalVisible: boolean;
   parentCountry?: ParentCountry;
+  governingCountry?: ParentCountry;
   governedBy?: string;
 };
 
@@ -37,7 +38,7 @@ export type SplitCountries = {
 
 export type GovernedCountries = {
   country: string,
-  parentCountry: string;
+  governingCountry: string;
   description: string;
 }
 

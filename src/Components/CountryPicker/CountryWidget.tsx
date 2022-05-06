@@ -19,11 +19,12 @@ const populateCountries = (
   country: CountryBase,
   countries: Country[],
   parentCountry?: ParentCountry,
+  governingCountry?: ParentCountry,
 ) => {
   let newCountry: Country = {
     continents: country.continents,
     flags: {
-      png: country.flags.png,
+      png: '',
       svg: country.flags.svg,
     },
     name: country.name,
@@ -35,11 +36,20 @@ const populateCountries = (
     parentCountry: parentCountry ? {
       continents: parentCountry.continents,
       flags: {
-        png: parentCountry.flags.png,
+        png: '',
         svg: parentCountry.flags.svg,
       },
       name: parentCountry.name,
       cca3: parentCountry.cca3, // Abbrevation
+    } : undefined,
+    governingCountry: governingCountry ? {
+      continents: governingCountry.continents,
+      flags: {
+        png: '',
+        svg: governingCountry.flags.svg,
+      },
+      name: governingCountry.name,
+      cca3: governingCountry.cca3, // Abbrevation
     } : undefined
   };
 
@@ -101,21 +111,21 @@ const loadCountriesIntoState = (
 
     if(isGovernedCountry === true) {
       const governedCountry:GovernedCountries = fetchGovernedCountries[fetchGovernedCountries.findIndex(gc => gc.country === country.cca3)];
-      let parentCountry:Country = allCountries[allCountries.findIndex(c => c.cca3 === governedCountry.parentCountry)];
+      let governingCountry:Country = allCountries[allCountries.findIndex(c => c.cca3 === governedCountry.governingCountry)];
 
-      if(parentCountry == null) {
-        parentCountry = parentCountries[parentCountries.findIndex(c => c.cca3 === governedCountry.parentCountry)];
+      if(governingCountry == null) {
+        governingCountry = parentCountries[parentCountries.findIndex(c => c.cca3 === governedCountry.governingCountry)];
       }
 
-      if(parentCountry != null) {
-        country.parentCountry = {
-          continents: parentCountry.continents,
+      if(governingCountry != null) {
+        country.governingCountry = {
+          continents: governingCountry.continents,
           flags: {
-            png: parentCountry.flags.png,
-            svg: parentCountry.flags.svg,
+            png: '',
+            svg: governingCountry.flags.svg,
           },
-          name: parentCountry.name,
-          cca3: parentCountry.cca3, // Abbrevation
+          name: governingCountry.name,
+          cca3: governingCountry.cca3, // Abbrevation
         }
         country.governedBy = governedCountry.description
       }

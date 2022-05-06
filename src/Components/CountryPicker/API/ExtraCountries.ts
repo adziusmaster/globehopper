@@ -8,26 +8,10 @@ export const fetchExtraCountries:Country[] = [
       svg: 'https://flagcdn.com/gb.svg',
     },
     name: {
-      common: 'Akrotiri',
-      official: 'Akrotiri'
+      common: 'Akrotiri and Dhekelia',
+      official: 'Akrotiri and Dhekelia'
     },
-    cca3: 'GBR-AKR', // Abbrevation
-    howManyVisits: 0,
-    favourited: false,
-    wishList: false,
-    modalVisible: false
-  },
-  {
-    continents: ['Europe'],
-    flags: {
-      png: '',
-      svg: 'https://flagcdn.com/gb.svg',
-    },
-    name: {
-      common: 'Dhekelia',
-      official: 'Dhekelia'
-    },
-    cca3: 'GBR-DHE', // Abbrevation
+    cca3: 'GBR-A&D', // Abbrevation
     howManyVisits: 0,
     favourited: false,
     wishList: false,
