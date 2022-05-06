@@ -34,33 +34,14 @@ const TeaserCountry = (
             </div>
 
             <div className="meta">
+              {country.parentCountry !== undefined && (
+                <div className="meta__item continent">{`${country.parentCountry.name.common}, `}</div>
+              )}
               <div className="meta__item continent">{country.continents[0]}</div>
             </div>
 
-            {(country.parentCountry !== undefined || country.governingCountry !== undefined) && (
+            {country.governingCountry !== undefined && (
               <div className="meta">
-              {country.parentCountry !== undefined && (
-                <div className="meta__item">
-                  <div className="country country--compact">
-                    <div className="country__flag">
-                      {country.parentCountry.flags.svg &&  (
-                        <img
-                          src={country.parentCountry.flags.svg}
-                          loading="lazy"
-                          alt=""
-                          width="24"
-                          height="16"
-                        />
-                      )}
-                    </div>
-                    <div className="country__name">
-                      {country.parentCountry.name.common}{country.governingCountry !== undefined ? ', ' : ''}
-                    </div>
-                  </div>
-                </div>
-              )}
-            
-              {country.governingCountry !== undefined && (
                 <div className="meta__item">
                   <div className="country country--compact">
                     <div className="country__flag">
@@ -80,7 +61,6 @@ const TeaserCountry = (
                         : country.governedBy}</div>
                   </div>
                 </div>
-              )}
               </div>
             )}
           </header>
