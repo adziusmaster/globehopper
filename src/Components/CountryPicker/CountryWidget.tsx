@@ -7,8 +7,12 @@ import {
   loadingAsyncState,
 } from "widgets-for-react";
 import CountryOverview from "../CountryOverview/CountryOverviewWidget";
-import { fetchCountries, fetchGovernedCountries, fetchSplitCountries, fetchSubCountries } from "./CountryApi";
-import { Country, CountryBase, CountrySelectorProps, CountryState, GovernedCountry, ParentCountry, SplitCountries } from "./CountryState";
+import { fetchExtraCountries } from "./API/ExtraCountries";
+import { fetchGovernedCountries } from "./API/GovernedCountries";
+import { fetchSplitCountries } from "./API/SplitCountries";
+import { fetchSubCountries } from "./API/SubCountries";
+import { fetchCountries } from "./CountryApi";
+import { Country, CountryBase, CountrySelectorProps, CountryState, GovernedCountries, ParentCountry, SplitCountries } from "./CountryState";
 
 
 const populateCountries = (
@@ -54,20 +58,26 @@ const loadCountriesIntoState = (
     let isParentCountry: boolean = fetchSubCountries.findIndex(country => country.country === countries[iterator].cca3) !== -1 ? true : false;
 
     if(isParentCountry === true) {
-      populateCountries(countries[iterator], parentCountries );
+      populateCountries(countries[iterator], parentCountries);
 
       const subCountries:Country[] = fetchSubCountries[fetchSubCountries.findIndex(country => country.country === countries[iterator].cca3)].subCountries;
       subCountries.forEach((subCountry) => {
         populateCountries(subCountry, allCountries, countries[iterator]);
       })
     } else {
-      populateCountries(countries[iterator], allCountries );
+      populateCountries(countries[iterator], allCountries);
     }
     
     iterator = iterator + 1;
   }
 
-  // SPLIT countries in existing allCountries array
+  // Add countries
+  const extraCountries:Country[] = fetchExtraCountries;
+  extraCountries.forEach((country) => {
+    populateCountries(country, allCountries);
+  });
+
+  // SPLIT countries
   allCountries.forEach((country) => {
     let isSplitCountry: boolean = fetchSplitCountries.findIndex(gc => gc.country === country.cca3) !== -1 ? true : false;
 
@@ -75,7 +85,7 @@ const loadCountriesIntoState = (
       const splitCountry:SplitCountries = fetchSplitCountries[fetchSplitCountries.findIndex(gc => gc.country === country.cca3)];
       let parentCountry:Country = country;
 
-      populateCountries(parentCountry, parentCountries );
+      populateCountries(parentCountry, parentCountries);
 
       splitCountry.splitCountries.forEach((splitCountry) => {
         populateCountries(splitCountry, allCountries, parentCountry);
@@ -85,12 +95,12 @@ const loadCountriesIntoState = (
     }
   });
 
-  // ADD extra information to existing allCountries array
+  // ADD governing parent countries
   allCountries.forEach((country) => {
     let isGovernedCountry: boolean = fetchGovernedCountries.findIndex(gc => gc.country === country.cca3) !== -1 ? true : false;
 
     if(isGovernedCountry === true) {
-      const governedCountry:GovernedCountry = fetchGovernedCountries[fetchGovernedCountries.findIndex(gc => gc.country === country.cca3)];
+      const governedCountry:GovernedCountries = fetchGovernedCountries[fetchGovernedCountries.findIndex(gc => gc.country === country.cca3)];
       let parentCountry:Country = allCountries[allCountries.findIndex(c => c.cca3 === governedCountry.parentCountry)];
 
       if(parentCountry == null) {

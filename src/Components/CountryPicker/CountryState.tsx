@@ -35,7 +35,7 @@ export type SplitCountries = {
   splitCountries: CountryBase[]
 }
 
-export type GovernedCountry = {
+export type GovernedCountries = {
   country: string,
   parentCountry: string;
   description: string;
